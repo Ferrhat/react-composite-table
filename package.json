@@ -4,14 +4,32 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server --history-api-fallback --progress --inline --colors",
+    "build": "webpack"
   },
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "Dávid Csejtei",
+    "email": "csejteidavid90@gmail.com"
+  },
+  "peerDependencies": {
+    "react": "^16.2.0"
+  },
   "dependencies": {
     "lodash": "^4.17.5",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
-    "react-select": "^1.2.1"
+    "react-select": "^1.2.1",
+    "webpack": "^2.6.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.5.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "webpack-dev-server": "^2.9.1"
   }
 }
