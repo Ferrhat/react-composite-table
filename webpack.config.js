@@ -1,17 +1,19 @@
 var path = require('path');
+
 module.exports = {
     entry: './lib/index.js',
     output: {
-        path: path.resolve(__dirname, 'build'),
+        path: path.resolve(__dirname, 'library'),
         filename: 'react-composite-table.js',
-        libraryTarget: 'commonjs2'
+        library: 'react-composite-table',
+        libraryTarget: 'umd'
     },
     module: {
         rules: [
             {
                 test: /\.js$/,
                 include: path.resolve(__dirname, 'lib'),
-                exclude: /(node_modules|build)/,
+                exclude: /(node_modules|library)/,
                 use: {
                     loader: 'babel-loader',
                     options: {
