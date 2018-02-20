@@ -22,7 +22,26 @@ module.exports = {
                         presets: ['env']
                     }
                 }
-            }
+            },
+            {
+                test: /\.scss$/,
+                include: [
+                    path.resolve(__dirname+"/node_modules/react-datepicker/stylesheets/", "scss")
+                ],
+                use: [
+                    { loader: "style-loader" },
+                    { loader: "css-loader" },
+                    { loader: "sass-loader" }
+                ]
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    { loader: "style-loader" },
+                    { loader: "css-loader" },
+                    { loader: "sass-loader" }
+                ]
+            },
         ]
     },
     plugins: [
