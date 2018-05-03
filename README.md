@@ -50,6 +50,9 @@ And want to show ID, username and name attributes in the table:
 ```javascript
 import Table2 from 'react-composite-table';
 
+// You have to write all of your actions and add to the as a props
+import { updateUserNameField, deleteRow } from '../actions/index';
+
 class UserTable extends Component {
 
     render() {
@@ -105,6 +108,8 @@ class UserTable extends Component {
         }
     }
 }
+
+export default connect(null, {updateUserNameField, deleteRow})(UserTable);
 ```
 
 # For package developers
