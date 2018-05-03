@@ -6,7 +6,10 @@
   "module": "./library/react-composite-table.js",
   "scripts": {
     "start": "webpack-dev-server --history-api-fallback --progress --inline --colors",
-    "build": "webpack -w"
+    "build": "webpack -w",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "author": {
     "name": "Dávid Csejtei",
@@ -35,5 +38,31 @@
     "style-loader": "^0.20.2",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.9.1"
+  },
+  "devDependencies": {
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.3",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^22.4.3",
+    "react-test-renderer": "^16.3.2"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/library/**",
+      "!**/coverage/**",
+      "!webpack.config.js"
+    ],
+    "setupFiles": [
+      "./tests/jestsetup.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.(css|scss)$": "identity-obj-proxy"
+    }
   }
 }
