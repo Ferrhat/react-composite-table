@@ -18,6 +18,35 @@ Rules:
 
 ## Example (UserTable)
 
+If you have the following data (e.g.: list of users) for the table:
+
+```
+[
+    0: {
+           id: 9,
+           username: "testadmin",
+           email: "admin@example.net",
+           name: "Test Admin",
+           roles: {
+               "SUPER_ADMIN",
+               "MANAGER"
+           }
+    }
+    1: {
+           id: 13,
+           username: "firsteditor",
+           email: "editor@example.net",
+           name: "First Editor",
+           roles: {
+               "EDITOR"
+           }
+    }
+]
+
+```
+
+And want to show ID, username and name attributes in the table:
+
 ```javascript
 import Table2 from 'react-composite-table';
 
@@ -26,6 +55,17 @@ class UserTable extends Component {
     render() {
         if(this.props.allUsers) {
             const columns = [
+                {
+                    label: 'ID',
+                    name: 'Id',
+                    value: 'Id',
+                    filterable: true,
+                    filterType: 'text',
+                    filterableProperty: 'Id',
+                    editable: false,
+                    sortable: true,
+                    sortableProperty: 'Id'
+                },
                 {
                     label: 'Username',
                     name: 'username',
@@ -48,34 +88,19 @@ class UserTable extends Component {
                     updateFunction: this.props.updateUserNameField,
                     sortable: true,
                     sortableProperty: 'name'
-                },
-                {
-                    label: 'ID',
-                    name: 'Id',
-                    value: 'Id',
-                    filterable: true,
-                    filterType: 'text',
-                    filterableProperty: 'Id',
-                    editable: false,
-                    sortable: true,
-                    sortableProperty: 'Id'
                 }
             ];
             
             return (
-                <div>
-                    <Table2
-                        data={this.props.allUsers}
-                        columns={columns}
-                        onDeleteRow={this.props.deleteRow}
-                    />
-                </div>
+                <Table2
+                    data={this.props.allUsers}
+                    columns={columns}
+                    onDeleteRow={this.props.deleteRow}
+                />
             );
         } else {
             return (
-                <div style={{marginTop: "20px", marginLeft: "20px"}}>
-                    <span className="icon-spinner icon-spinner-large"></span>
-                </div>
+                <span className="icon-spinner icon-spinner-large"></span>
             );
         }
     }
