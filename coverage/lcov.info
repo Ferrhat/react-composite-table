@@ -1,5 +1,5 @@
 TN:
-SF:D:\userdata\csejtei\Development-fresh\react-composite-table\lib\index.js
+SF:C:\Users\csejtei\Development\react-composite-table\lib\index.js
 FNF:0
 FNH:0
 DA:1,0
@@ -10,7 +10,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\userdata\csejtei\Development-fresh\react-composite-table\lib\actions\index.js
+SF:C:\Users\csejtei\Development\react-composite-table\lib\actions\index.js
 FN:3,filterByLabel
 FN:4,(anonymous_1)
 FN:15,filterByMultiSelectLabel
@@ -83,7 +83,7 @@ BRF:18
 BRH:0
 end_of_record
 TN:
-SF:D:\userdata\csejtei\Development-fresh\react-composite-table\lib\components\footer.js
+SF:C:\Users\csejtei\Development\react-composite-table\lib\components\footer.js
 FN:6,(anonymous_0)
 FN:24,(anonymous_1)
 FN:35,(anonymous_2)
@@ -175,7 +175,7 @@ BRF:16
 BRH:2
 end_of_record
 TN:
-SF:D:\userdata\csejtei\Development-fresh\react-composite-table\lib\components\modalDialog.js
+SF:C:\Users\csejtei\Development\react-composite-table\lib\components\modalDialog.js
 FN:6,ModalDialog
 FNF:1
 FNH:0
@@ -201,7 +201,7 @@ BRF:2
 BRH:0
 end_of_record
 TN:
-SF:D:\userdata\csejtei\Development-fresh\react-composite-table\lib\components\table.js
+SF:C:\Users\csejtei\Development\react-composite-table\lib\components\table.js
 FN:33,Table2
 FN:77,(anonymous_18)
 FN:162,(anonymous_29)
@@ -453,7 +453,7 @@ BRF:78
 BRH:0
 end_of_record
 TN:
-SF:D:\userdata\csejtei\Development-fresh\react-composite-table\lib\factory\tableFieldFactory.js
+SF:C:\Users\csejtei\Development\react-composite-table\lib\factory\tableFieldFactory.js
 FNF:0
 FNH:0
 DA:1,0
@@ -470,7 +470,7 @@ BRF:3
 BRH:0
 end_of_record
 TN:
-SF:D:\userdata\csejtei\Development-fresh\react-composite-table\lib\factory\editableColumnFields\editableDateField.js
+SF:C:\Users\csejtei\Development\react-composite-table\lib\factory\editableColumnFields\editableDateField.js
 FN:10,EditableDateField
 FNF:1
 FNH:0
@@ -521,7 +521,7 @@ BRF:14
 BRH:0
 end_of_record
 TN:
-SF:D:\userdata\csejtei\Development-fresh\react-composite-table\lib\factory\editableColumnFields\editableSelectField.js
+SF:C:\Users\csejtei\Development\react-composite-table\lib\factory\editableColumnFields\editableSelectField.js
 FN:7,EditableSelectField
 FN:29,(anonymous_11)
 FN:31,(anonymous_12)
@@ -587,7 +587,7 @@ BRF:16
 BRH:0
 end_of_record
 TN:
-SF:D:\userdata\csejtei\Development-fresh\react-composite-table\lib\factory\editableColumnFields\editableTextField.js
+SF:C:\Users\csejtei\Development\react-composite-table\lib\factory\editableColumnFields\editableTextField.js
 FN:6,EditableTextField
 FNF:1
 FNH:0
@@ -641,7 +641,7 @@ BRF:16
 BRH:0
 end_of_record
 TN:
-SF:D:\userdata\csejtei\Development-fresh\react-composite-table\lib\factory\fields\selectField.js
+SF:C:\Users\csejtei\Development\react-composite-table\lib\factory\fields\selectField.js
 FN:7,SelectField
 FN:48,(anonymous_13)
 FNF:2
@@ -675,7 +675,7 @@ BRF:4
 BRH:0
 end_of_record
 TN:
-SF:D:\userdata\csejtei\Development-fresh\react-composite-table\lib\factory\fields\textField.js
+SF:C:\Users\csejtei\Development\react-composite-table\lib\factory\fields\textField.js
 FN:6,TextField
 FNF:1
 FNH:0
@@ -696,7 +696,7 @@ BRF:2
 BRH:0
 end_of_record
 TN:
-SF:D:\userdata\csejtei\Development-fresh\react-composite-table\tests\jestsetup.js
+SF:C:\Users\csejtei\Development\react-composite-table\tests\jestsetup.js
 FNF:0
 FNH:0
 DA:3,1
