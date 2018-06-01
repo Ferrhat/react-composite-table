@@ -2,7 +2,7 @@
   "name": "react-composite-table",
   "version": "1.0.1",
   "description": "",
-  "main": "react-composite-table.js",
+  "main": "./library/react-composite-table.js",
   "module": "./library/react-composite-table.js",
   "scripts": {
     "start": "webpack-dev-server --history-api-fallback --progress --inline --colors",
