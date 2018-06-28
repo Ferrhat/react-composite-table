@@ -16,6 +16,16 @@
     "email": "csejteidavid90@gmail.com"
   },
   "dependencies": {
+    "lodash": "^4.17.5",
+    "moment": "^2.20.1",
+    "node-sass": "^4.7.2",
+    "react": "^16.3.0",
+    "react-bootstrap": "^0.32.1",
+    "react-datepicker": "^1.2.1",
+    "react-dom": "^16.2.0",
+    "react-select": "^1.2.1"
+  },
+  "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
@@ -28,26 +38,17 @@
     "babel-preset-stage-2": "^6.24.1",
     "compression-webpack-plugin": "^1.1.7",
     "css-loader": "^0.28.9",
-    "lodash": "^4.17.5",
-    "moment": "^2.20.1",
-    "node-sass": "^4.7.2",
-    "react": "^16.2.0",
-    "react-bootstrap": "^0.32.1",
-    "react-datepicker": "^1.2.1",
-    "react-dom": "^16.2.0",
-    "react-select": "^1.2.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.4",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^23.2.0",
+    "react-scripts": "^1.0.15",
+    "react-test-renderer": "^16.3.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.2",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.9.1"
-  },
-  "devDependencies": {
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "enzyme-to-json": "^3.3.3",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^22.4.3",
-    "react-test-renderer": "^16.3.2"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -55,10 +56,12 @@
       "!**/node_modules/**",
       "!**/library/**",
       "!**/coverage/**",
+      "!**/setupTests.js",
+      "!**/tempPolyfills.js",
       "!webpack.config.js"
     ],
     "setupFiles": [
-      "./tests/jestsetup.js"
+      "./lib/setupTests.js"
     ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"

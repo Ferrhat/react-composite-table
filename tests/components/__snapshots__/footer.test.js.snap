@@ -1,110 +1,160 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Footer renders properly 1`] = `
-<tr>
-  <td
-    colSpan="6"
-  >
-    <div
-      className="n-table-total"
-    >
-      <span>
-        Total: 
-        <span>
-          3
-        </span>
-      </span>
-    </div>
-    <div
-      className="n-table-pagenum"
-    >
-      <button
-        className="btn btn-icon"
-        onClick={[Function]}
-        type="button"
-      >
-        <span
-          className="icon icon-first"
-        />
-      </button>
-      <button
-        className="btn btn-icon"
-        id="previous-button"
-        onClick={[Function]}
-        type="button"
-      >
-        <span
-          className="icon icon-back"
-        />
-      </button>
-      <span>
-        Page
-      </span>
-      <input
-        className="n-inputfield form-control"
-        onChange={[Function]}
-        style={
-          Object {
-            "zIndex": 0,
-          }
-        }
-        value={1}
-      />
-      <span>
-        /
-        3
-      </span>
-      <button
-        className="btn btn-icon"
-        onClick={[Function]}
-        type="button"
-      >
-        <span
-          className="icon icon-next"
-        />
-      </button>
-      <button
-        className="btn btn-icon"
-        onClick={[Function]}
-        type="button"
-      >
-        <span
-          className="icon icon-last"
-        />
-      </button>
-    </div>
-    <div
-      className="n-table-pageselect"
-    >
-      <div
-        className="n-table-pagecombox"
+<Footer
+  defaultNumberOfRowsShow={1}
+  onCurrentPageNumberChange={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          1,
+        ],
+      ],
+      "results": Array [
+        Object {
+          "isThrow": false,
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  onPageSizeChange={[MockFunction]}
+  tableData={
+    Array [
+      Object {
+        "id": 1,
+        "username": "Komárom",
+      },
+      Object {
+        "id": 2,
+        "username": "Zalaegerszeg",
+      },
+      Object {
+        "id": 3,
+        "username": "Budapest",
+      },
+    ]
+  }
+>
+  <tfoot>
+    <tr>
+      <td
+        colSpan="6"
       >
         <div
-          className="input-group input-append dropdown combobox n-page-combox"
+          className="n-table-total"
+          id="total-rows-number"
         >
+          <span>
+            Total: 
+            <span>
+              3
+            </span>
+          </span>
+        </div>
+        <div
+          className="n-table-pagenum"
+        >
+          <button
+            className="btn btn-icon"
+            onClick={[Function]}
+            type="button"
+          >
+            <span
+              className="icon icon-first"
+            />
+          </button>
+          <button
+            className="btn btn-icon"
+            id="previous-button"
+            onClick={[Function]}
+            type="button"
+          >
+            <span
+              className="icon icon-back"
+            />
+          </button>
+          <span>
+            Page
+          </span>
           <input
             className="n-inputfield form-control"
-            min="1"
-            name="quantity"
+            id="current-page-number"
             onChange={[Function]}
             style={
               Object {
                 "zIndex": 0,
               }
             }
-            type="number"
             value={1}
           />
+          <span
+            id="total-number-of-pages"
+          >
+            /
+            3
+          </span>
+          <button
+            className="btn btn-icon"
+            onClick={[Function]}
+            type="button"
+          >
+            <Glyphicon
+              bsClass="glyphicon"
+              glyph="search"
+            >
+              <span
+                className="glyphicon glyphicon-search"
+              />
+            </Glyphicon>
+            <span
+              className="glyphicon glyphicon-search"
+            />
+          </button>
+          <button
+            className="btn btn-icon"
+            onClick={[Function]}
+            type="button"
+          >
+            <span
+              className="icon icon-last"
+            />
+          </button>
         </div>
-      </div>
-      <div
-        className="n-table-suffix"
-      >
-        <span>
-          Items per page
-        </span>
-      </div>
-    </div>
-  </td>
-</tr>
+        <div
+          className="n-table-pageselect"
+        >
+          <div
+            className="n-table-pagecombox"
+          >
+            <div
+              className="input-group input-append dropdown combobox n-page-combox"
+            >
+              <input
+                className="n-inputfield form-control"
+                min="1"
+                name="quantity"
+                onChange={[Function]}
+                style={
+                  Object {
+                    "zIndex": 0,
+                  }
+                }
+                type="number"
+                value={1}
+              />
+            </div>
+          </div>
+          <div
+            className="n-table-suffix"
+          >
+            <span>
+              Items per page
+            </span>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tfoot>
+</Footer>
 `;
