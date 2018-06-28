@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for lib/factory/fields/textField.js</title>
+    <title>Code coverage report for actions/index.js</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="..\..\..\prettify.css" />
-    <link rel="stylesheet" href="..\..\..\base.css" />
+    <link rel="stylesheet" href="..\prettify.css" />
+    <link rel="stylesheet" href="..\base.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(..\..\..\sort-arrow-sprite.png);
+            background-image: url(..\sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -16,28 +16,28 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="..\..\..\index.html">All files</a> / <a href="index.html">lib/factory/fields</a> textField.js
+      <a href="..\index.html">All files</a> / <a href="index.html">actions</a> index.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>0/17</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>0/12</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/1</span>
+        <span class='fraction'>0/6</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>0/16</span>
       </div>
     </div>
     <p class="quiet">
@@ -79,30 +79,14 @@
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
 <a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -110,54 +94,67 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import React, {Component} from "react";</span>
-<span class="cstat-no" title="statement not covered" >import {sortBy} from 'lodash';</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import {isEmpty, get} from 'lodash';</span>
 &nbsp;
-class TextField extends Component {
-&nbsp;
-<span class="fstat-no" title="function not covered" >    constructor(</span>props) <span class="cstat-no" title="statement not covered" >{</span>
-        super(props);
-&nbsp;
-<span class="cstat-no" title="statement not covered" >        this.state = {</span>
-            value: ''
+export function <span class="fstat-no" title="function not covered" >filterByLabel(data, filterableProperty, filterValue) {</span>
+<span class="cstat-no" title="statement not covered" >    return data.filter(<span class="fstat-no" title="function not covered" >row =&gt; </span>{</span>
+<span class="cstat-no" title="statement not covered" >            if (isEmpty(filterValue)) {</span>
+<span class="cstat-no" title="statement not covered" >                return row;</span>
+            } else {
+                const value = <span class="cstat-no" title="statement not covered" >get(row, filterableProperty);</span>
+<span class="cstat-no" title="statement not covered" >                return (value.toLowerCase().indexOf(filterValue.toLowerCase()) &gt;= 0) ? row : null;</span>
+            }
         }
-&nbsp;
-<span class="cstat-no" title="statement not covered" >        this.onTextChange = this.onTextChange.bind(this);</span>
-    }
-&nbsp;
-    onTextChange(event) {
-<span class="cstat-no" title="statement not covered" >        this.setState({</span>
-            value: event.target.value
-        })
-<span class="cstat-no" title="statement not covered" >        this.props.onChange(this.props.filterableProperty, event);</span>
-    }
-&nbsp;
-    render() {
-<span class="cstat-no" title="statement not covered" >        return (</span>
-            &lt;input type="text"
-                   style={{ height: "100%" }}
-                   name={this.props.name}
-                   onChange={this.onTextChange}
-                   value={this.state.value}
-                   className="n-inputfield form-control"/&gt;
-        )
-    }
+    )
 }
 &nbsp;
-export default TextField;</pre></td></tr>
+export function <span class="fstat-no" title="function not covered" >filterByMultiSelectLabel(data, filterableProperty, filterValues) {</span>
+<span class="cstat-no" title="statement not covered" >    return data.filter(<span class="fstat-no" title="function not covered" >row =&gt; </span>{</span>
+        const value = <span class="cstat-no" title="statement not covered" >get(row, filterableProperty);</span>
+<span class="cstat-no" title="statement not covered" >        return filterValues.find(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >filterValue =&gt; filterValue.value == value);</span></span></span>
+    });
+}
+&nbsp;
+export function <span class="fstat-no" title="function not covered" >sorting(a, b, order, propertyName) {</span>
+    const firstValue = <span class="cstat-no" title="statement not covered" >get(a, propertyName);</span>
+    const secondValue = <span class="cstat-no" title="statement not covered" >get(b, propertyName);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (firstValue == secondValue) {</span>
+<span class="cstat-no" title="statement not covered" >        return 0;</span>
+    } else <span class="cstat-no" title="statement not covered" >if (firstValue &lt; secondValue) {</span>
+<span class="cstat-no" title="statement not covered" >        return order == 'ASC' ? -1 : 1;</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >        return order == 'ASC' ? 1 : -1;</span>
+    }
+}
+&nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Jun 28 2018 11:29:14 GMT+0200 (Central Europe Summer Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Jun 28 2018 11:29:49 GMT+0200 (Central Europe Summer Time)
 </div>
 </div>
-<script src="..\..\..\prettify.js"></script>
+<script src="..\prettify.js"></script>
 <script>
 window.onload = function () {
         if (typeof prettyPrint === 'function') {
@@ -165,7 +162,7 @@ window.onload = function () {
         }
 };
 </script>
-<script src="..\..\..\sorter.js"></script>
-<script src="..\..\..\block-navigation.js"></script>
+<script src="..\sorter.js"></script>
+<script src="..\block-navigation.js"></script>
 </body>
 </html>
