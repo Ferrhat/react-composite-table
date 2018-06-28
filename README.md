@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/davidcsejtei/react-composite-table.svg?branch=master)](https://travis-ci.org/davidcsejtei/react-composite-table)
 
+[![Coverage Status](https://coveralls.io/repos/github/davidcsejtei/react-composite-table/badge.svg)](https://coveralls.io/github/davidcsejtei/react-composite-table)
+
 # How to use React Composite Table
 
 The package gives you a general table component for ReactJS projects.
