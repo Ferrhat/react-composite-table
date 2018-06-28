@@ -124,6 +124,22 @@ describe('Footer', () => {
         expect(currentPage).toEqual(1);
     });
 
+    it('go to last page after click on that button', () => {
+        const spy = jest.spyOn(Footer.prototype, 'onClickLastButton');
+        const wrapper = mount(
+            <Footer tableData={tableData}
+                    onPageSizeChange={pageSizeChange}
+                    onCurrentPageNumberChange={currentPageNumberChange}
+                    defaultNumberOfRowsShow={numberOfRowsShow}/>
+        );
+        const instance = wrapper.instance();
+        wrapper.find('#last-button').simulate('click');
+        expect(spy).toHaveBeenCalledTimes(1);
+
+        const currentPage = wrapper.state('currentPage');
+        expect(currentPage).toEqual(3);
+    });
+
     it('changes current page input value', () => {
         const wrapper = mount(
             <Footer tableData={tableData}
@@ -133,17 +149,15 @@ describe('Footer', () => {
         );
 
         wrapper.find('#current-page-number').simulate('change', {target: {value: '200'}});
+        let inputValue = wrapper.find('#current-page-number').instance().value;
 
-        const inputValue = wrapper.find('#current-page-number').instance().value;
+        expect(inputValue).toEqual("3");
 
+        wrapper.find('#current-page-number').simulate('change', {target: {value: 'F'}});
+        inputValue = wrapper.find('#current-page-number').instance().value;
 
-        console.log('status: ', wrapper.state('currentPage'));
-        console.log(inputValue);
-
+        expect(inputValue).toEqual("1");
     });
-
-
-
 
 
 });

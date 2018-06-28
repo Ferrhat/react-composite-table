@@ -115,6 +115,7 @@ exports[`Footer renders properly 1`] = `
           </button>
           <button
             className="btn btn-icon"
+            id="last-button"
             onClick={[Function]}
             type="button"
           >
