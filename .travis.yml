@@ -7,6 +7,6 @@ cache:
 script:
   - npm install
   - npm install coveralls
-  - npm test:coverage
+  - npm run test:coverage
 after_success:
   - npm run coveralls
