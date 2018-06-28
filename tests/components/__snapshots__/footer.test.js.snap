@@ -96,6 +96,7 @@ exports[`Footer renders properly 1`] = `
           </span>
           <button
             className="btn btn-icon"
+            id="next-button"
             onClick={[Function]}
             type="button"
           >

@@ -64,6 +64,44 @@ describe('Footer', () => {
         expect(currentPageNumber).toEqual("1");
     });
 
+    it('go to previous page after click on that button', () => {
+        const spy = jest.spyOn(Footer.prototype, 'onClickPreviousButton');
+        const wrapper = mount(
+            <Footer tableData={tableData}
+                    onPageSizeChange={pageSizeChange}
+                    onCurrentPageNumberChange={currentPageNumberChange}
+                    defaultNumberOfRowsShow={numberOfRowsShow}/>
+        );
+        const instance = wrapper.instance();
+        wrapper.find('#previous-button').simulate('click');
+        expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+    it('go to next page after click on that button', () => {
+        const spy = jest.spyOn(Footer.prototype, 'onClickNextButton');
+        const wrapper = mount(
+            <Footer tableData={tableData}
+                    onPageSizeChange={pageSizeChange}
+                    onCurrentPageNumberChange={currentPageNumberChange}
+                    defaultNumberOfRowsShow={numberOfRowsShow}/>
+        );
+        const instance = wrapper.instance();
+        wrapper.find('#next-button').simulate('click');
+        expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+    /*it('calculates all pages number', () => {
+       const spy = jest.spyOn(Footer.prototype, 'componentDidMount');
+       const wrapper = mount(
+           <Footer tableData={tableData}
+                   onPageSizeChange={pageSizeChange}
+                   onCurrentPageNumberChange={currentPageNumberChange}
+                   defaultNumberOfRowsShow={numberOfRowsShow}/>
+       );
+       wrapper.instance().componentDidMount();
+       expect(spy).toHaveBeenCalled();
+   });*/
+
     /*const tableData = [
         {
             id: 1,
