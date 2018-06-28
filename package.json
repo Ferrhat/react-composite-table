@@ -8,8 +8,7 @@
     "start": "webpack-dev-server --history-api-fallback --progress --inline --colors",
     "build": "webpack -w",
     "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage | coveralls",
+    "test:watch": "jest --watch"
   },
   "author": {
     "name": "Dávid Csejtei",
