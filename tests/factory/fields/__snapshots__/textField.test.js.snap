@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextField renders properly 1`] = `
+<input
+  className="n-inputfield form-control"
+  onChange={[Function]}
+  style={
+    Object {
+      "height": "100%",
+    }
+  }
+  type="text"
+  value=""
+/>
+`;
