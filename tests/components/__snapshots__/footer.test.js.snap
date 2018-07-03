@@ -95,16 +95,8 @@ exports[`Footer renders properly 1`] = `
             onClick={[Function]}
             type="button"
           >
-            <Glyphicon
-              bsClass="glyphicon"
-              glyph="search"
-            >
-              <span
-                className="glyphicon glyphicon-search"
-              />
-            </Glyphicon>
             <span
-              className="glyphicon glyphicon-search"
+              className="icon icon-next"
             />
           </button>
           <button
