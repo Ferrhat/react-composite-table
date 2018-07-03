@@ -10,12 +10,6 @@ exports[`Footer renders properly 1`] = `
           1,
         ],
       ],
-      "results": Array [
-        Object {
-          "isThrow": false,
-          "value": undefined,
-        },
-      ],
     }
   }
   onPageSizeChange={[MockFunction]}

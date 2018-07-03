@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextField renders properly 1`] = `
+<td
+  key="testValue"
+  onClick={[Function]}
+/>
+`;

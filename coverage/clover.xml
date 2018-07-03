@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1530600390350" clover="3.2.0">
-  <project timestamp="1530600390350" name="All files">
-    <metrics statements="324" coveredstatements="53" conditionals="166" coveredconditionals="14" methods="52" coveredmethods="17" elements="542" coveredelements="84" complexity="0" loc="324" ncloc="324" packages="5" files="11" classes="11">
+<coverage generated="1530626385507" clover="3.2.0">
+  <project timestamp="1530626385507" name="All files">
+    <metrics statements="328" coveredstatements="75" conditionals="158" coveredconditionals="21" methods="60" coveredmethods="24" elements="546" coveredelements="120" complexity="0" loc="328" ncloc="328" packages="5" files="11" classes="11">
       <package name="actions">
         <metrics statements="16" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="6" coveredmethods="0"/>
-        <file name="index.js" path="C:\Users\csejtei\Development\react-composite-table\lib\actions\index.js">
+        <file name="index.js" path="C:\wamp64\www\react-composite-table\lib\actions\index.js">
           <metrics statements="16" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="6" coveredmethods="0"/>
           <line num="1" count="0" type="stmt"/>
           <line num="4" count="0" type="stmt"/>
@@ -26,7 +26,7 @@
       </package>
       <package name="components">
         <metrics statements="208" coveredstatements="40" conditionals="107" coveredconditionals="14" methods="32" coveredmethods="11"/>
-        <file name="footer.js" path="C:\Users\csejtei\Development\react-composite-table\lib\components\footer.js">
+        <file name="footer.js" path="C:\wamp64\www\react-composite-table\lib\components\footer.js">
           <metrics statements="47" coveredstatements="32" conditionals="18" coveredconditionals="9" methods="11" coveredmethods="9"/>
           <line num="8" count="7" type="stmt"/>
           <line num="10" count="7" type="stmt"/>
@@ -76,7 +76,7 @@
           <line num="115" count="14" type="stmt"/>
           <line num="119" count="23" type="stmt"/>
         </file>
-        <file name="message.js" path="C:\Users\csejtei\Development\react-composite-table\lib\components\message.js">
+        <file name="message.js" path="C:\wamp64\www\react-composite-table\lib\components\message.js">
           <metrics statements="8" coveredstatements="8" conditionals="5" coveredconditionals="5" methods="2" coveredmethods="2"/>
           <line num="7" count="9" type="cond" truecount="5" falsecount="0"/>
           <line num="9" count="1" type="stmt"/>
@@ -87,7 +87,7 @@
           <line num="21" count="9" type="stmt"/>
           <line num="29" count="1" type="stmt"/>
         </file>
-        <file name="modalDialog.js" path="C:\Users\csejtei\Development\react-composite-table\lib\components\modalDialog.js">
+        <file name="modalDialog.js" path="C:\wamp64\www\react-composite-table\lib\components\modalDialog.js">
           <metrics statements="13" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
           <line num="1" count="0" type="stmt"/>
           <line num="2" count="0" type="stmt"/>
@@ -103,7 +103,7 @@
           <line num="35" count="0" type="stmt"/>
           <line num="37" count="0" type="stmt"/>
         </file>
-        <file name="table.js" path="C:\Users\csejtei\Development\react-composite-table\lib\components\table.js">
+        <file name="table.js" path="C:\wamp64\www\react-composite-table\lib\components\table.js">
           <metrics statements="140" coveredstatements="0" conditionals="82" coveredconditionals="0" methods="18" coveredmethods="0"/>
           <line num="1" count="0" type="stmt"/>
           <line num="2" count="0" type="stmt"/>
@@ -249,7 +249,7 @@
       </package>
       <package name="factory">
         <metrics statements="5" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <file name="tableFieldFactory.js" path="C:\Users\csejtei\Development\react-composite-table\lib\factory\tableFieldFactory.js">
+        <file name="tableFieldFactory.js" path="C:\wamp64\www\react-composite-table\lib\factory\tableFieldFactory.js">
           <metrics statements="5" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="0" coveredmethods="0"/>
           <line num="1" count="0" type="stmt"/>
           <line num="2" count="0" type="stmt"/>
@@ -259,8 +259,8 @@
         </file>
       </package>
       <package name="factory.editableColumnFields">
-        <metrics statements="82" coveredstatements="0" conditionals="44" coveredconditionals="0" methods="8" coveredmethods="0"/>
-        <file name="editableDateField.js" path="C:\Users\csejtei\Development\react-composite-table\lib\factory\editableColumnFields\editableDateField.js">
+        <metrics statements="86" coveredstatements="22" conditionals="36" coveredconditionals="7" methods="16" coveredmethods="7"/>
+        <file name="editableDateField.js" path="C:\wamp64\www\react-composite-table\lib\factory\editableColumnFields\editableDateField.js">
           <metrics statements="26" coveredstatements="0" conditionals="14" coveredconditionals="0" methods="1" coveredmethods="0"/>
           <line num="1" count="0" type="stmt"/>
           <line num="2" count="0" type="stmt"/>
@@ -289,8 +289,8 @@
           <line num="75" count="0" type="stmt"/>
           <line num="77" count="0" type="stmt"/>
         </file>
-        <file name="editableSelectField.js" path="C:\Users\csejtei\Development\react-composite-table\lib\factory\editableColumnFields\editableSelectField.js">
-          <metrics statements="26" coveredstatements="0" conditionals="14" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <file name="editableSelectField.js" path="C:\wamp64\www\react-composite-table\lib\factory\editableColumnFields\editableSelectField.js">
+          <metrics statements="27" coveredstatements="0" conditionals="11" coveredconditionals="0" methods="4" coveredmethods="0"/>
           <line num="1" count="0" type="stmt"/>
           <line num="2" count="0" type="stmt"/>
           <line num="3" count="0" type="stmt"/>
@@ -298,63 +298,67 @@
           <line num="10" count="0" type="stmt"/>
           <line num="14" count="0" type="stmt"/>
           <line num="15" count="0" type="stmt"/>
-          <line num="19" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="20" count="0" type="stmt"/>
-          <line num="25" count="0" type="stmt"/>
-          <line num="31" count="0" type="stmt"/>
-          <line num="35" count="0" type="stmt"/>
-          <line num="36" count="0" type="stmt"/>
-          <line num="39" count="0" type="stmt"/>
-          <line num="40" count="0" type="stmt"/>
-          <line num="41" count="0" type="stmt"/>
-          <line num="46" count="0" type="stmt"/>
-          <line num="49" count="0" type="stmt"/>
-          <line num="50" count="0" type="cond" truecount="0" falsecount="5"/>
-          <line num="51" count="0" type="stmt"/>
-          <line num="52" count="0" type="stmt"/>
-          <line num="53" count="0" type="stmt"/>
-          <line num="55" count="0" type="stmt"/>
-          <line num="59" count="0" type="cond" truecount="0" falsecount="5"/>
-          <line num="60" count="0" type="stmt"/>
-          <line num="77" count="0" type="stmt"/>
-        </file>
-        <file name="editableTextField.js" path="C:\Users\csejtei\Development\react-composite-table\lib\factory\editableColumnFields\editableTextField.js">
-          <metrics statements="30" coveredstatements="0" conditionals="16" coveredconditionals="0" methods="3" coveredmethods="0"/>
-          <line num="1" count="0" type="stmt"/>
-          <line num="2" count="0" type="stmt"/>
-          <line num="6" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="9" count="0" type="stmt"/>
-          <line num="15" count="0" type="stmt"/>
           <line num="16" count="0" type="stmt"/>
-          <line num="17" count="0" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
-          <line num="19" count="0" type="stmt"/>
-          <line num="23" count="0" type="stmt"/>
-          <line num="24" count="0" type="stmt"/>
-          <line num="30" count="0" type="stmt"/>
+          <line num="20" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="21" count="0" type="stmt"/>
+          <line num="26" count="0" type="stmt"/>
+          <line num="32" count="0" type="stmt"/>
           <line num="36" count="0" type="stmt"/>
           <line num="37" count="0" type="stmt"/>
-          <line num="38" count="0" type="stmt"/>
+          <line num="40" count="0" type="stmt"/>
           <line num="41" count="0" type="stmt"/>
           <line num="42" count="0" type="stmt"/>
-          <line num="43" count="0" type="stmt"/>
-          <line num="48" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="49" count="0" type="stmt"/>
-          <line num="54" count="0" type="stmt"/>
-          <line num="55" count="0" type="stmt"/>
+          <line num="47" count="0" type="stmt"/>
+          <line num="51" count="0" type="cond" truecount="0" falsecount="3"/>
+          <line num="56" count="0" type="stmt"/>
+          <line num="57" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="58" count="0" type="stmt"/>
           <line num="59" count="0" type="stmt"/>
-          <line num="63" count="0" type="stmt"/>
-          <line num="64" count="0" type="stmt"/>
-          <line num="65" count="0" type="stmt"/>
-          <line num="69" count="0" type="cond" truecount="0" falsecount="5"/>
-          <line num="72" count="0" type="stmt"/>
-          <line num="78" count="0" type="cond" truecount="0" falsecount="5"/>
-          <line num="81" count="0" type="stmt"/>
+          <line num="61" count="0" type="stmt"/>
+          <line num="65" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="66" count="0" type="stmt"/>
+          <line num="83" count="0" type="stmt"/>
+        </file>
+        <file name="editableTextField.js" path="C:\wamp64\www\react-composite-table\lib\factory\editableColumnFields\editableTextField.js">
+          <metrics statements="33" coveredstatements="22" conditionals="11" coveredconditionals="7" methods="11" coveredmethods="7"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="9" count="1" type="stmt"/>
+          <line num="15" count="1" type="stmt"/>
+          <line num="16" count="1" type="stmt"/>
+          <line num="17" count="1" type="stmt"/>
+          <line num="18" count="1" type="stmt"/>
+          <line num="19" count="1" type="stmt"/>
+          <line num="20" count="1" type="stmt"/>
+          <line num="24" count="1" type="stmt"/>
+          <line num="25" count="1" type="stmt"/>
+          <line num="31" count="0" type="stmt"/>
+          <line num="32" count="0" type="stmt"/>
+          <line num="36" count="0" type="stmt"/>
+          <line num="38" count="0" type="stmt"/>
+          <line num="39" count="0" type="stmt"/>
+          <line num="40" count="0" type="stmt"/>
+          <line num="43" count="0" type="stmt"/>
+          <line num="44" count="0" type="stmt"/>
+          <line num="45" count="0" type="stmt"/>
+          <line num="50" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="51" count="0" type="stmt"/>
+          <line num="56" count="1" type="stmt"/>
+          <line num="57" count="1" type="stmt"/>
+          <line num="61" count="1" type="stmt"/>
+          <line num="65" count="1" type="stmt"/>
+          <line num="66" count="1" type="stmt"/>
+          <line num="67" count="1" type="stmt"/>
+          <line num="68" count="1" type="stmt"/>
+          <line num="72" count="9" type="cond" truecount="3" falsecount="0"/>
+          <line num="78" count="6" type="cond" truecount="2" falsecount="0"/>
+          <line num="79" count="3" type="stmt"/>
+          <line num="85" count="3" type="cond" truecount="1" falsecount="1"/>
+          <line num="86" count="3" type="stmt"/>
         </file>
       </package>
-      <package name="factory.fields">
+      <package name="factory.filterFields">
         <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
-        <file name="selectField.js" path="C:\Users\csejtei\Development\react-composite-table\lib\factory\fields\selectField.js">
+        <file name="selectField.js" path="C:\wamp64\www\react-composite-table\lib\factory\filterFields\selectField.js">
           <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
           <line num="8" count="1" type="stmt"/>
           <line num="10" count="1" type="stmt"/>
@@ -364,7 +368,7 @@
           <line num="25" count="2" type="stmt"/>
           <line num="39" count="1" type="stmt"/>
         </file>
-        <file name="textField.js" path="C:\Users\csejtei\Development\react-composite-table\lib\factory\fields\textField.js">
+        <file name="textField.js" path="C:\wamp64\www\react-composite-table\lib\factory\filterFields\textField.js">
           <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
           <line num="6" count="1" type="stmt"/>
           <line num="8" count="1" type="stmt"/>

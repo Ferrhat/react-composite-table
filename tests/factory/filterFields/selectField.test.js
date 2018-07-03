@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import SelectField from "../../../lib/factory/fields/selectField";
+import SelectField from "../../../lib/factory/filterFields/selectField";
 
 
 describe('SelectField', () => {
