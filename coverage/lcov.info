@@ -1,5 +1,5 @@
 TN:
-SF:C:\wamp64\www\react-composite-table\lib\actions\index.js
+SF:C:\Users\csejtei\Development\react-composite-table\lib\actions\index.js
 FN:3,filterByLabel
 FN:4,(anonymous_1)
 FN:15,filterByMultiSelectLabel
@@ -48,7 +48,7 @@ BRF:12
 BRH:0
 end_of_record
 TN:
-SF:C:\wamp64\www\react-composite-table\lib\components\footer.js
+SF:C:\Users\csejtei\Development\react-composite-table\lib\components\footer.js
 FN:7,(anonymous_0)
 FN:25,(anonymous_1)
 FN:36,(anonymous_2)
@@ -144,7 +144,7 @@ BRF:18
 BRH:9
 end_of_record
 TN:
-SF:C:\wamp64\www\react-composite-table\lib\components\message.js
+SF:C:\Users\csejtei\Development\react-composite-table\lib\components\message.js
 FN:6,(anonymous_0)
 FN:20,(anonymous_1)
 FNF:2
@@ -170,7 +170,7 @@ BRF:5
 BRH:5
 end_of_record
 TN:
-SF:C:\wamp64\www\react-composite-table\lib\components\modalDialog.js
+SF:C:\Users\csejtei\Development\react-composite-table\lib\components\modalDialog.js
 FN:6,ModalDialog
 FNF:1
 FNH:0
@@ -196,7 +196,7 @@ BRF:2
 BRH:0
 end_of_record
 TN:
-SF:C:\wamp64\www\react-composite-table\lib\components\table.js
+SF:C:\Users\csejtei\Development\react-composite-table\lib\components\table.js
 FN:23,Table2
 FN:68,(anonymous_18)
 FN:155,(anonymous_29)
@@ -463,7 +463,7 @@ BRF:82
 BRH:0
 end_of_record
 TN:
-SF:C:\wamp64\www\react-composite-table\lib\factory\tableFieldFactory.js
+SF:C:\Users\csejtei\Development\react-composite-table\lib\factory\tableFieldFactory.js
 FNF:0
 FNH:0
 DA:1,0
@@ -480,7 +480,7 @@ BRF:3
 BRH:0
 end_of_record
 TN:
-SF:C:\wamp64\www\react-composite-table\lib\factory\editableColumnFields\editableDateField.js
+SF:C:\Users\csejtei\Development\react-composite-table\lib\factory\editableColumnFields\editableDateField.js
 FN:10,EditableDateField
 FNF:1
 FNH:0
@@ -531,7 +531,7 @@ BRF:14
 BRH:0
 end_of_record
 TN:
-SF:C:\wamp64\www\react-composite-table\lib\factory\editableColumnFields\editableSelectField.js
+SF:C:\Users\csejtei\Development\react-composite-table\lib\factory\editableColumnFields\editableSelectField.js
 FN:7,EditableSelectField
 FN:30,(anonymous_19)
 FN:38,(anonymous_20)
@@ -588,7 +588,7 @@ BRF:14
 BRH:0
 end_of_record
 TN:
-SF:C:\wamp64\www\react-composite-table\lib\factory\editableColumnFields\editableTextField.js
+SF:C:\Users\csejtei\Development\react-composite-table\lib\factory\editableColumnFields\editableTextField.js
 FN:6,EditableTextField
 FN:35,(anonymous_19)
 FN:40,(anonymous_20)
@@ -649,7 +649,7 @@ BRF:16
 BRH:0
 end_of_record
 TN:
-SF:C:\wamp64\www\react-composite-table\lib\factory\fields\selectField.js
+SF:C:\Users\csejtei\Development\react-composite-table\lib\factory\fields\selectField.js
 FN:7,(anonymous_0)
 FN:17,(anonymous_1)
 FN:24,(anonymous_2)
@@ -671,7 +671,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:C:\wamp64\www\react-composite-table\lib\factory\fields\textField.js
+SF:C:\Users\csejtei\Development\react-composite-table\lib\factory\fields\textField.js
 FN:5,(anonymous_0)
 FN:15,(anonymous_1)
 FN:22,(anonymous_2)
