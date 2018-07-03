@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow, mount} from 'enzyme';
 import EditableTextField from '../../../lib/factory/editableColumnFields/editableTextField';
 
-describe('TextField', () => {
+describe('EditableTextField', () => {
     const mockOnChange = jest.fn();
     const mockOnClickEditRow = jest.fn();
     const editableTextField = shallow(<EditableTextField column={{ name: 'testName', value: 'testValue' }} onClickEditRow={mockOnClickEditRow} rowId={1} onUpdateField={() => Promise.resolve()} />);
