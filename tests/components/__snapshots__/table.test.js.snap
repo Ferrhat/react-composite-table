@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table renders properly 1`] = `
+<div>
+  <Modal
+    animation={true}
+    autoFocus={true}
+    backdrop={true}
+    bsClass="modal"
+    dialogComponentClass={[Function]}
+    enforceFocus={true}
+    keyboard={true}
+    manager={
+      ModalManager {
+        "add": [Function],
+        "containers": Array [],
+        "data": Array [],
+        "handleContainerOverflow": true,
+        "hideSiblingNodes": true,
+        "isTopModal": [Function],
+        "modals": Array [],
+        "remove": [Function],
+      }
+    }
+    onHide={[Function]}
+    renderBackdrop={[Function]}
+    restoreFocus={true}
+    show={false}
+  >
+    <ModalHeader
+      bsClass="modal-header"
+      closeButton={false}
+      closeLabel="Close"
+    >
+      <ModalTitle
+        bsClass="modal-title"
+        componentClass="h4"
+      >
+        Confirmation
+      </ModalTitle>
+    </ModalHeader>
+    <ModalBody
+      bsClass="modal-body"
+      componentClass="div"
+    >
+      <p>
+        Do you want to delete the selected row with id: 
+        -1
+        ?
+      </p>
+    </ModalBody>
+    <ModalFooter
+      bsClass="modal-footer"
+      componentClass="div"
+    >
+      <Button
+        active={false}
+        block={false}
+        bsClass="btn"
+        bsStyle="default"
+        disabled={false}
+        onClick={[Function]}
+      >
+        No
+      </Button>
+      <Button
+        active={false}
+        block={false}
+        bsClass="btn"
+        bsStyle="defaultBlue"
+        disabled={false}
+        onClick={[Function]}
+      >
+        Yes
+      </Button>
+    </ModalFooter>
+  </Modal>
+  <Table
+    bordered={false}
+    bsClass="n-table"
+    className="n-table-standard n-table-filter"
+    condensed={false}
+    hover={true}
+    responsive={false}
+    striped={true}
+  >
+    <thead>
+      <tr>
+        <th
+          width="50"
+        />
+      </tr>
+      <tr>
+        <th />
+      </tr>
+    </thead>
+    <tbody />
+    <Footer
+      defaultNumberOfRowsShow={10}
+      onCurrentPageNumberChange={[Function]}
+      onPageSizeChange={[Function]}
+      tableData={Array []}
+    />
+  </Table>
+</div>
+`;

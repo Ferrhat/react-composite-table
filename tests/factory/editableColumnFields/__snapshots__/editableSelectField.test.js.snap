@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditableSelectField renders properly 1`] = `
+<td
+  key="testName"
+  onClick={[Function]}
+/>
+`;
