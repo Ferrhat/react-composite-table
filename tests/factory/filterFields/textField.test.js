@@ -14,6 +14,11 @@ describe('TextField', () => {
         expect(textField.find('input').length).toEqual(1);
     });
 
+    it('stores the changed value', () => {
+        textField.setProps({value: 'newValue'});
+        expect(textField.state('value')).toEqual('newValue');
+    });
+
     it('should trigger a change event', () => {
         const event = {
             preventDefault() {},

@@ -17,7 +17,7 @@ describe('EditableTextField', () => {
     });
 
     it('should trigger a click event', () => {
-        editableTextField.setState({value: 'notTest'});
+        editableTextField.setProps({value: 'notTest'});
         const event = {
             preventDefault() {},
             target: { name: 'testName', value: 'testValue' }

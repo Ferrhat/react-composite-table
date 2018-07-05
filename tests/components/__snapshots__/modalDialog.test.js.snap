@@ -1,0 +1,166 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModalDialog renders properly 1`] = `
+<Modal
+  animation={true}
+  autoFocus={true}
+  backdrop={true}
+  bsClass="modal"
+  dialogComponentClass={[Function]}
+  enforceFocus={true}
+  keyboard={true}
+  manager={
+    ModalManager {
+      "add": [Function],
+      "containers": Array [],
+      "data": Array [],
+      "handleContainerOverflow": true,
+      "hideSiblingNodes": true,
+      "isTopModal": [Function],
+      "modals": Array [],
+      "remove": [Function],
+    }
+  }
+  onHide={[Function]}
+  renderBackdrop={[Function]}
+  restoreFocus={true}
+  show={true}
+>
+  <ModalHeader
+    bsClass="modal-header"
+    closeButton={true}
+    closeLabel="Close"
+  >
+    <ModalTitle
+      bsClass="modal-title"
+      componentClass="h4"
+    >
+      Modal heading
+    </ModalTitle>
+  </ModalHeader>
+  <ModalBody
+    bsClass="modal-body"
+    componentClass="div"
+  >
+    <h4>
+      Text in a modal
+    </h4>
+    <p>
+      Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+    </p>
+    <h4>
+      Popover in a modal
+    </h4>
+    <p>
+      there is a
+       
+      <OverlayTrigger
+        defaultOverlayShown={false}
+        overlay={
+          <Popover
+            bsClass="popover"
+            id="modal-popover"
+            placement="right"
+            title="popover"
+          >
+            very popover. such engagement
+          </Popover>
+        }
+        trigger={
+          Array [
+            "hover",
+            "focus",
+          ]
+        }
+      >
+        <a
+          href="#popover"
+        >
+          popover
+        </a>
+      </OverlayTrigger>
+       
+      here
+    </p>
+    <h4>
+      Tooltips in a modal
+    </h4>
+    <p>
+      there is a
+       
+      <OverlayTrigger
+        defaultOverlayShown={false}
+        overlay={
+          <Tooltip
+            bsClass="tooltip"
+            id="modal-tooltip"
+            placement="right"
+          >
+            wow.
+          </Tooltip>
+        }
+        trigger={
+          Array [
+            "hover",
+            "focus",
+          ]
+        }
+      >
+        <a
+          href="#tooltip"
+        >
+          tooltip
+        </a>
+      </OverlayTrigger>
+       
+      here
+    </p>
+    <hr />
+    <h4>
+      Overflowing text to show scroll behavior
+    </h4>
+    <p>
+      Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+    </p>
+    <p>
+      Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+    </p>
+    <p>
+      Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
+    </p>
+    <p>
+      Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+    </p>
+    <p>
+      Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+    </p>
+    <p>
+      Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
+    </p>
+    <p>
+      Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+    </p>
+    <p>
+      Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+    </p>
+    <p>
+      Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
+    </p>
+  </ModalBody>
+  <ModalFooter
+    bsClass="modal-footer"
+    componentClass="div"
+  >
+    <Button
+      active={false}
+      block={false}
+      bsClass="btn"
+      bsStyle="default"
+      disabled={false}
+      onClick={[Function]}
+    >
+      Close
+    </Button>
+  </ModalFooter>
+</Modal>
+`;

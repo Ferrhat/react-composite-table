@@ -15,6 +15,11 @@ describe('SelectField', () => {
         expect(selectField.find('Select').length).toEqual(1);
     });
 
+    it('stores the changed value', () => {
+        selectField.setProps({value: 'newValue'});
+        expect(selectField.state('value')).toEqual('newValue');
+    });
+
     it('should trigger a change event', () => {
         const selection = {
             value: 'testValue',

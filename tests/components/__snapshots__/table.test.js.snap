@@ -91,7 +91,27 @@ exports[`Table renders properly 1`] = `
         />
       </tr>
       <tr>
-        <th />
+        <th>
+          <Button
+            active={false}
+            block={false}
+            bsClass="btn"
+            bsStyle="icon"
+            disabled={false}
+            onClick={[Function]}
+            title="Reset filters"
+          >
+            <span
+              className="icon icon-close-rounded"
+              style={
+                Object {
+                  "fontSize": "1em",
+                  "lineHeight": "normal",
+                }
+              }
+            />
+          </Button>
+        </th>
       </tr>
     </thead>
     <tbody />
