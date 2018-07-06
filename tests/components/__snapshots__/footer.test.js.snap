@@ -127,6 +127,7 @@ exports[`Footer renders properly 1`] = `
             >
               <input
                 className="n-inputfield form-control"
+                id="current-row-number"
                 min="1"
                 name="quantity"
                 onChange={[Function]}

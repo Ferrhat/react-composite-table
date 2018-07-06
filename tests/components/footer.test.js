@@ -108,6 +108,21 @@ describe('Footer', () => {
         expect(currentPage).toEqual(2);
     });
 
+    it('stays on same page, when clicking next page on the last page', () => {
+        const wrapper = mount(
+            <Footer tableData={tableData}
+                    onPageSizeChange={pageSizeChange}
+                    onCurrentPageNumberChange={currentPageNumberChange}
+                    defaultNumberOfRowsShow={numberOfRowsShow}/>
+        );
+
+        wrapper.setState({ currentPage: 3}, () => {
+            wrapper.find('#next-button').simulate('click');
+            const currentPage = wrapper.state('currentPage');
+            expect(currentPage).toEqual(3);
+        });
+    });
+
     it('go to first page after click on that button', () => {
         const spy = jest.spyOn(Footer.prototype, 'onClickFirstButton');
         const wrapper = mount(
@@ -159,5 +174,84 @@ describe('Footer', () => {
         expect(inputValue).toEqual("1");
     });
 
+    it('changes current row input value', () => {
+        const wrapper = mount(
+            <Footer tableData={tableData}
+                    onPageSizeChange={pageSizeChange}
+                    onCurrentPageNumberChange={currentPageNumberChange}
+                    defaultNumberOfRowsShow={numberOfRowsShow}/>
+        );
+
+        wrapper.find('#current-row-number').simulate('change', {target: {value: '-200'}});
+        let inputValue = wrapper.find('#current-row-number').instance().value;
+
+        expect(inputValue).toEqual(numberOfRowsShow.toString());
+
+        wrapper.find('#current-row-number').simulate('change', {target: {value: 'F'}});
+        inputValue = wrapper.find('#current-row-number').instance().value;
+
+        expect(inputValue).toEqual(numberOfRowsShow.toString());
+
+        wrapper.setState({currentPage: 100});
+        wrapper.find('#current-row-number').simulate('change', {target: {value: '1'}});
+        inputValue = wrapper.find('#current-row-number').instance().value;
+
+        expect(wrapper.state('currentPage')).toEqual(3);
+    });
+
+    it('handles keyboard navigation', () => {
+        const map = {};
+        window.addEventListener = jest.fn((event, cb) => {
+          map[event] = cb;
+        });
+
+        const wrapper = mount(
+            <Footer tableData={tableData}
+                    onPageSizeChange={pageSizeChange}
+                    onCurrentPageNumberChange={currentPageNumberChange}
+                    defaultNumberOfRowsShow={numberOfRowsShow}/>
+        );
+
+        wrapper.setState({currentPage: 1});
+        map.keydown({key: 'ArrowRight', path: [{tagName: 'INPUT'}]});
+        expect(wrapper.state('currentPage')).toEqual(1);
+        map.keydown({key: 'ArrowUp'});
+        expect(wrapper.state('currentPage')).toEqual(1);
+        map.keydown({key: 'ArrowRight'});
+        expect(wrapper.state('currentPage')).toEqual(2);
+        map.keydown({key: 'ArrowLeft'});
+        expect(wrapper.state('currentPage')).toEqual(1);
+
+        const componentWillUnmount = jest.spyOn(wrapper.instance(), 'componentWillUnmount');
+        wrapper.unmount();
+        expect(componentWillUnmount).toHaveBeenCalled();
+
+    });
+
+    it('recalculates page number on changes', () => {
+        let wrapper = mount(
+            <Footer tableData={tableData}
+                    onPageSizeChange={pageSizeChange}
+                    onCurrentPageNumberChange={currentPageNumberChange}
+                    defaultNumberOfRowsShow={numberOfRowsShow}/>
+        );
+
+        wrapper.setState({currentPage: 100});
+        wrapper.setProps({randomProp: 'testValue'});
+        expect(wrapper.state('currentPage')).toEqual(3);
+        wrapper.unmount();
+
+        wrapper = mount(
+            <Footer tableData={[]}
+                    onPageSizeChange={pageSizeChange}
+                    onCurrentPageNumberChange={currentPageNumberChange}
+                    defaultNumberOfRowsShow={numberOfRowsShow}/>
+        );
+        wrapper.setProps({randomProp: 'testValue'});
+        expect(wrapper.state('currentPage')).toEqual(1);
+        wrapper.setProps({tableData: tableData});
+        expect(wrapper.state('currentPage')).toEqual(1);
+
+    });
 
 });
