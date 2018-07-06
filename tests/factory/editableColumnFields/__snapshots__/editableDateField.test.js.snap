@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditableDateField renders properly 1`] = `
+<EditableDateField
+  column={
+    Object {
+      "name": "testName",
+      "value": "testValue",
+    }
+  }
+  onClickEditRow={[MockFunction]}
+  onUpdateField={[Function]}
+  rowId={1}
+>
+  <td
+    key="testValue"
+    onClick={[Function]}
+  />
+</EditableDateField>
+`;

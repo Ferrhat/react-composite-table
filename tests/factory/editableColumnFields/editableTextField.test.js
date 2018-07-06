@@ -3,6 +3,12 @@ import {shallow, mount} from 'enzyme';
 import EditableTextField from '../../../lib/factory/editableColumnFields/editableTextField';
 
 describe('EditableTextField', () => {
+    const lodash = require('lodash');
+
+    jest.spyOn(lodash, 'debounce').mockImplementation((f) => {
+        return f;
+    });
+
     const mockOnChange = jest.fn();
     const mockOnClickEditRow = jest.fn();
     const editableTextField = shallow(<EditableTextField column={{ name: 'testName', value: 'testValue' }} onClickEditRow={mockOnClickEditRow} rowId={1} onUpdateField={() => Promise.resolve()} />);
@@ -17,7 +23,7 @@ describe('EditableTextField', () => {
     });
 
     it('should trigger a click event', () => {
-        editableTextField.setProps({value: 'notTest'});
+        editableTextField.setProps({value: 'notTest', onFinishEditRow: jest.fn(), handleShowMessage: jest.fn()});
         const event = {
             preventDefault() {},
             target: { name: 'testName', value: 'testValue' }
@@ -52,19 +58,20 @@ describe('EditableTextField', () => {
     });
 
     // Needs to be fixed: Not waiting for the async function to finish
-    /*
+
     it('tries to save the changes and returns an error', () => {
         const mockOnUpdateField = jest.fn(() => Promise.reject());
         const mockHandleShowMessage = jest.fn();
-        const event = {
-            key: 'Escape'
-        };
-        editableTextField.setState({currentValue: 'invalidValue', value: 'validValue' });
-        editableTextField.setProps({onUpdateField: mockOnUpdateField, handleShowMessage: mockHandleShowMessage, onFinishEditRow: jest.fn() });
+
+        editableTextField.setState({currentValue: 'invalidValue' });
+        editableTextField.setProps({value: 'validValue', onUpdateField: mockOnUpdateField, handleShowMessage: mockHandleShowMessage, onFinishEditRow: jest.fn() });
+        editableTextField.find('input').simulate('keydown', {key: 'Enter'});
         expect(editableTextField.state('currentValue')).toEqual('invalidValue');
-        editableTextField.find('input').simulate('keydown', event);
-        expect(editableTextField.state('currentValue')).toEqual('validValue');
+        editableTextField.find('input').simulate('keydown', {key: 'Escape'});
+        setImmediate(() => {
+            expect(editableTextField.state('currentValue')).toEqual('validValue');
+        });
     });
-    */
+
 
 });
