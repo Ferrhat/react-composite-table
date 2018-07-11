@@ -319,6 +319,39 @@ describe('Table', () => {
         expect(table.state('activeFilters')).toEqual({});
     });
 
+    it('renders custom buttons', () => {
+        const mockButtonHandler = jest.fn();
+
+        table = shallow(<Table columns={[{
+                label: 'Name',
+                name: 'name',
+                value: 'name',
+                filterable: true,
+                filterType: 'text',
+                filterableProperty: 'name',
+                editable: true,
+                sortable: true,
+                sortableProperty: 'name',
+                updateFunction: jest.fn(),
+        }]}
+        buttons={[
+            {
+                icon: { type: 'icon', name: 'edit' },
+                handler: mockButtonHandler,
+            },
+            {
+                renderer: () => <h1>{'testH1'}</h1>,
+            }
+        ]}
+        data={[{id: 1, name: 'testValue'}]} />);
+
+        expect(table.find('ul > li > span.icon-edit').length).toEqual(1);
+        table.find('ul > li > span.icon-edit').simulate('click');
+        expect(mockButtonHandler).toBeCalled();
+        expect(table.find('ul > li > h1').length).toEqual(1);
+        expect(table.find('ul > li > h1').text()).toEqual('testH1');
+    });
+
     it('initializes filters', () => {
         jest.spyOn(sfcookies, 'read_cookie').mockImplementation((f) => {
             return {"name":{"value":"testValue111","filterableProperty":"name","type":"text"}};
@@ -339,6 +372,5 @@ describe('Table', () => {
 
         expect(table.state('tableData')).toEqual([]);
     });
-
 
 });
