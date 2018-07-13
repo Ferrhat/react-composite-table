@@ -4,7 +4,6 @@ import EditableDateField from '../../../lib/factory/editableColumnFields/editabl
 import moment from 'moment';
 
 describe('EditableDateField', () => {
-    const mockOnChange = jest.fn();
     const mockOnClickEditRow = jest.fn();
     const editableDateField = mount(<EditableDateField column={{ name: 'testName', value: 'testValue' }} onClickEditRow={mockOnClickEditRow} rowId={1} onUpdateField={() => Promise.resolve()} />);
 
@@ -27,10 +26,9 @@ describe('EditableDateField', () => {
     });
 
     it('contains a td and an DatePicker if the row is under edit', () => {
-        editableDateField.setProps({rowUnderEdit: true, rowUnderEditId: 1, columnUnderEditId: 'testName' }, () => {
-            expect(editableDateField.find('td').length).toEqual(1);
-            expect(editableDateField.find('DatePicker').length).toEqual(1);
-        });
+        editableDateField.setProps({rowUnderEdit: true, rowUnderEditId: 1, columnUnderEditId: 'testName' });
+        expect(editableDateField.find('td').length).toEqual(1);
+        expect(editableDateField.find('DatePicker').length).toEqual(1);
     });
 /*
     it('saves changes on change', () => {

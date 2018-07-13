@@ -148,21 +148,22 @@ describe('Table', () => {
         expect(table.find('EditableDateField').length).toEqual(1);
     });
 
-    it(`doesn't display an editable date field`, () => {
+    it(`doesn't display any editable fields`, () => {
         table = shallow(<Table columns={[{
-                label: 'Warranty',
-                name: 'warranty',
-                value: 'warranty',
+                label: 'Name',
+                name: 'name',
+                value: 'name',
                 filterable: true,
                 filterType: 'nottext',
-                filterableProperty: 'warranty',
+                filterableProperty: 'name',
                 editable: true,
                 sortable: true,
-                sortableProperty: 'warranty',
-                updateType: 'date',
+                sortableProperty: 'name',
                 updateFunction: jest.fn(),
         }]} data={[{id: 1}]} onDeleteRow={mockOnDeleteRowResolve} />);
 
+        expect(table.find('EditableTextField').length).toEqual(0);
+        expect(table.find('EditableSelectField').length).toEqual(0);
         expect(table.find('EditableDateField').length).toEqual(0);
     });
 
@@ -250,9 +251,9 @@ describe('Table', () => {
         }]} data={[{id: 1, name: 'testValue'}]} onDeleteRow={mockOnDeleteRowResolve} name={'testTableName'} />);
 
         table.setState({activeFilters: {}});
-        table.find('TextField').simulate('change', 'name', {target: {value: 'testValue', name: ''}});
+        table.find('TextField').simulate('change', '', 'text', 'name', 'testValue');
         expect(table.state('activeFilters')).toEqual({});
-        table.find('TextField').simulate('change', 'name', {target: {value: 'testValue', name: 'name'}});
+        table.find('TextField').simulate('change', 'name', 'text', 'name', 'testValue');
         expect(table.state('activeFilters')).toEqual({name: {value: 'testValue', filterableProperty: 'name', type: 'text'}});
     });
 
@@ -272,9 +273,9 @@ describe('Table', () => {
         }]} data={[{id: 1, name: 'testValue'}]} onDeleteRow={mockOnDeleteRowResolve} />);
 
         table.setState({activeFilters: {}});
-        table.find('SelectField').simulate('change', 'country_id', 'country_id', null);
+        table.find('SelectField').simulate('change', 'country_id', 'multiSelect', 'country_id', null);
         expect(table.state('activeFilters')).toEqual({country_id: {value: null, filterableProperty: 'country_id', type: 'multiSelect'}});
-        table.find('SelectField').simulate('change', 'country_id', 'country_id', [{label: 'Hungary', value: 1}]);
+        table.find('SelectField').simulate('change', 'country_id', 'multiSelect', 'country_id', [{label: 'Hungary', value: 1}]);
         expect(table.state('activeFilters')).toEqual({country_id: {value: [{label: 'Hungary', value: 1}], filterableProperty: 'country_id', type: 'multiSelect'}});
     });
 

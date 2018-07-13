@@ -25,6 +25,6 @@ describe('SelectField', () => {
             value: 'testValue',
         };
         selectField.find('Select').simulate('change', selection);
-        expect(mockOnChange).toBeCalledWith('testName', 'testValue', selection);
+        expect(mockOnChange).toBeCalledWith('testName', 'multiSelect', 'testValue', selection);
     });
 });

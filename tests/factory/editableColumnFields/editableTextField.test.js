@@ -9,7 +9,6 @@ describe('EditableTextField', () => {
         return f;
     });
 
-    const mockOnChange = jest.fn();
     const mockOnClickEditRow = jest.fn();
     const editableTextField = shallow(<EditableTextField column={{ name: 'testName', value: 'testValue' }} onClickEditRow={mockOnClickEditRow} rowId={1} onUpdateField={() => Promise.resolve()} />);
 
@@ -34,10 +33,9 @@ describe('EditableTextField', () => {
     });
 
     it('contains a td and an input if the row is under edit', () => {
-        editableTextField.setProps({rowUnderEdit: true, rowUnderEditId: 1, columnUnderEditId: 'testName' }, () => {
-            expect(editableTextField.find('td').length).toEqual(1);
-            expect(editableTextField.find('input').length).toEqual(1);
-        });
+        editableTextField.setProps({rowUnderEdit: true, rowUnderEditId: 1, columnUnderEditId: 'testName' });
+        expect(editableTextField.find('td').length).toEqual(1);
+        expect(editableTextField.find('input').length).toEqual(1);
     });
 
     it('should trigger a change event', () => {
@@ -56,8 +54,6 @@ describe('EditableTextField', () => {
         expect(mockSetSelectionRange).toBeCalledWith(event.target.value.length, event.target.value.length);
         expect(editableTextField.state('currentValue')).toEqual(event.target.value);
     });
-
-    // Needs to be fixed: Not waiting for the async function to finish
 
     it('tries to save the changes and returns an error', () => {
         const mockOnUpdateField = jest.fn(() => Promise.reject());

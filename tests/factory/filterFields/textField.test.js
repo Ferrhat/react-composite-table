@@ -4,7 +4,7 @@ import TextField from "../../../lib/factory/filterFields/textField";
 
 describe('TextField', () => {
     const mockOnChange = jest.fn();
-    const textField = shallow(<TextField onChange={mockOnChange} filterableProperty={'testValue'} />);
+    const textField = shallow(<TextField onChange={mockOnChange} filterableProperty={'testValue'} name={'testName'} />);
 
     it('renders properly', () => {
         expect(textField).toMatchSnapshot();
@@ -25,7 +25,7 @@ describe('TextField', () => {
             target: { name: 'testName', value: 'testValue' }
         };
         textField.find('input').simulate('change', event);
-        expect(mockOnChange).toBeCalledWith('testValue', event);
+        expect(mockOnChange).toBeCalledWith('testName', 'text', 'testValue', event.target.value);
         expect(textField.state('value')).toEqual(event.target.value);
     });
 

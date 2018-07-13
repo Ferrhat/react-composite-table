@@ -3,6 +3,7 @@
 exports[`TextField renders properly 1`] = `
 <input
   className="n-inputfield form-control"
+  name="testName"
   onChange={[Function]}
   style={
     Object {
