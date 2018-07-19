@@ -1,6 +1,7 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
 import EditableTextField from '../../../lib/factory/editableColumnFields/editableTextField';
+import {flushPromises} from '../../helper/index';
 
 describe('EditableTextField', () => {
     const lodash = require('lodash');
@@ -9,8 +10,17 @@ describe('EditableTextField', () => {
         return f;
     });
 
+    const mockOnChangeEditRow = jest.fn();
     const mockOnClickEditRow = jest.fn();
-    const editableTextField = shallow(<EditableTextField column={{ name: 'testName', value: 'testValue' }} onClickEditRow={mockOnClickEditRow} rowId={1} onUpdateField={() => Promise.resolve()} />);
+    const editableTextField = shallow(
+        <EditableTextField
+            column={{ name: 'testName', value: 'testValue' }}
+            onClickEditRow={mockOnClickEditRow}
+            onChangeEditRow={mockOnChangeEditRow}
+            rowId={1}
+            onUpdateField={() => Promise.resolve()}
+        />
+    );
 
     it('renders properly', () => {
         expect(editableTextField).toMatchSnapshot();
@@ -33,7 +43,7 @@ describe('EditableTextField', () => {
     });
 
     it('contains a td and an input if the row is under edit', () => {
-        editableTextField.setProps({rowUnderEdit: true, rowUnderEditId: 1, columnUnderEditId: 'testName' });
+        editableTextField.setProps({rowUnderEdit: true});
         expect(editableTextField.find('td').length).toEqual(1);
         expect(editableTextField.find('input').length).toEqual(1);
     });
@@ -52,21 +62,139 @@ describe('EditableTextField', () => {
         editableTextField.find('input').simulate('blur');
         expect(mockFocus).toBeCalled();
         expect(mockSetSelectionRange).toBeCalledWith(event.target.value.length, event.target.value.length);
+        expect(mockOnChangeEditRow).toBeCalledWith(event.target.value);
         expect(editableTextField.state('currentValue')).toEqual(event.target.value);
     });
 
-    it('tries to save the changes and returns an error', () => {
-        const mockOnUpdateField = jest.fn(() => Promise.reject());
+    it('saves the field changes successfully', async () => {
+        const mockOnUpdateField = jest.fn(() => Promise.resolve());
+        const mockOnFinishEditRow = jest.fn();
         const mockHandleShowMessage = jest.fn();
 
-        editableTextField.setState({currentValue: 'invalidValue' });
-        editableTextField.setProps({value: 'validValue', onUpdateField: mockOnUpdateField, handleShowMessage: mockHandleShowMessage, onFinishEditRow: jest.fn() });
-        editableTextField.find('input').simulate('keydown', {key: 'Enter'});
-        expect(editableTextField.state('currentValue')).toEqual('invalidValue');
-        editableTextField.find('input').simulate('keydown', {key: 'Escape'});
-        setImmediate(() => {
-            expect(editableTextField.state('currentValue')).toEqual('validValue');
+        editableTextField.setProps({
+            onUpdateRow: null,
+            rowUnderEdit: true,
+            onUpdateField: mockOnUpdateField,
+            handleShowMessage: mockHandleShowMessage,
+            onFinishEditRow: mockOnFinishEditRow,
         });
+        expect(editableTextField.find('input').length).toEqual(1);
+        editableTextField.find('input').simulate('change', {target: {value: 'testValue'}});
+        await flushPromises();
+        expect(editableTextField.state('currentValue')).toEqual('testValue');
+        editableTextField.find('input').simulate('keydown', {key: 'Enter'});
+        await flushPromises();
+        expect(editableTextField.state('value')).toEqual('testValue');
+        expect(mockOnUpdateField).toBeCalled();
+        expect(mockOnFinishEditRow).toBeCalledWith(1, 'testName');
+        expect(mockHandleShowMessage).toBeCalledWith('Selected row edited successfully', 'ok');
+
+    });
+
+    it('displays an error if the field changes cannot be saved', async () => {
+        const mockOnUpdateField = jest.fn(() => Promise.reject());
+        const mockOnFinishEditRow = jest.fn();
+        const mockHandleShowMessage = jest.fn();
+
+        editableTextField.setProps({
+            onUpdateRow: null,
+            rowUnderEdit: true,
+            value: 'previousValue',
+            onUpdateField: mockOnUpdateField,
+            handleShowMessage: mockHandleShowMessage,
+            onFinishEditRow: mockOnFinishEditRow,
+        });
+        expect(editableTextField.find('input').length).toEqual(1);
+        editableTextField.find('input').simulate('change', {target: {value: 'testValue'}});
+        await flushPromises();
+        expect(editableTextField.state('currentValue')).toEqual('testValue');
+        editableTextField.find('input').simulate('keydown', {key: 'Escape'});
+        await flushPromises();
+
+        expect(editableTextField.state('currentValue')).toEqual('previousValue');
+        expect(mockOnUpdateField).toBeCalled();
+        expect(mockOnFinishEditRow).toBeCalledWith(1, 'testName');
+        expect(mockHandleShowMessage).toBeCalledWith('Selected row could not be saved', 'error');
+    });
+
+    it(`doesn't save the changes on any button press`, async () => {
+        const mockOnUpdateField = jest.fn(() => Promise.resolve());
+
+        editableTextField.setProps({
+            onUpdateRow: null,
+            rowUnderEdit: true,
+            onUpdateField: mockOnUpdateField,
+        });
+
+        editableTextField.find('input').simulate('keydown', {key: 'Any'});
+        await flushPromises();
+        expect(mockOnUpdateField).not.toBeCalled();
+    });
+
+    it(`doesn't save the changes on blur when editing row`, async () => {
+        const mockOnUpdateField = jest.fn(() => Promise.resolve());
+        const mockOnUpdateRow = jest.fn(() => Promise.resolve());
+
+        editableTextField.setProps({
+            onUpdateRow: mockOnUpdateRow,
+            rowUnderEdit: true,
+            onUpdateField: mockOnUpdateField,
+        });
+
+        editableTextField.find('input').simulate('blur');
+        await flushPromises();
+        expect(mockOnUpdateField).not.toBeCalled();
+    });
+
+    it('saves the row changes successfully', async () => {
+        const mockOnUpdateRow = jest.fn(() => Promise.resolve());
+        const mockOnFinishEditRow = jest.fn();
+        const mockHandleShowMessage = jest.fn();
+
+        editableTextField.setProps({
+            rowUnderEdit: true,
+            onUpdateRow: mockOnUpdateRow,
+            handleShowMessage: mockHandleShowMessage,
+            onFinishEditRow: mockOnFinishEditRow,
+        });
+        expect(editableTextField.find('input').length).toEqual(1);
+        editableTextField.find('input').simulate('change', {target: {value: 'testValue'}});
+        await flushPromises();
+        expect(editableTextField.state('currentValue')).toEqual('testValue');
+        editableTextField.find('input').simulate('keydown', {key: 'Enter'});
+        await flushPromises();
+
+        expect(editableTextField.state('value')).toEqual('testValue');
+        expect(mockOnUpdateRow).toBeCalled();
+        expect(mockOnFinishEditRow).toBeCalledWith(1, 'testName');
+        expect(mockHandleShowMessage).toBeCalledWith('Selected row edited successfully', 'ok');
+
+    });
+
+    it('displays an error if the row changes cannot be saved', async () => {
+        const mockOnUpdateRow = jest.fn(() => Promise.reject());
+        const mockOnFinishEditRow = jest.fn();
+        const mockHandleShowMessage = jest.fn();
+
+        editableTextField.setProps({
+            rowUnderEdit: true,
+            value: 'previousValue',
+            onUpdateRow: mockOnUpdateRow,
+            handleShowMessage: mockHandleShowMessage,
+            onFinishEditRow: mockOnFinishEditRow,
+        });
+        expect(editableTextField.find('input').length).toEqual(1);
+        editableTextField.find('input').simulate('change', {target: {value: 'testValue'}});
+        await flushPromises();
+        expect(editableTextField.state('currentValue')).toEqual('testValue');
+        editableTextField.find('input').simulate('keydown', {key: 'Escape'});
+        await flushPromises();
+
+        expect(editableTextField.state('currentValue')).toEqual('previousValue');
+        expect(mockOnUpdateRow).toBeCalled();
+        expect(mockOnFinishEditRow).toBeCalledWith(1, 'testName');
+        expect(mockHandleShowMessage).toBeCalledWith('Selected row could not be saved', 'error');
+
     });
 
 

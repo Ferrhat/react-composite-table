@@ -86,8 +86,8 @@ describe('Table', () => {
             isModalDialogActive: false,
             idToDelete: -1,
         });
-        expect(table.find('.list-inline-item > span').length).toEqual(1);
-        table.find('.list-inline-item > span').simulate('click');
+        expect(table.find('TableButton').length).toEqual(1);
+        table.find('TableButton').simulate('click');
         setImmediate(() => {
             expect(table.state('isModalDialogActive')).toEqual(true);
             expect(table.state('idToDelete')).toEqual(1);
@@ -198,6 +198,132 @@ describe('Table', () => {
         expect(table.state('rowUnderEdit')).toEqual(false);
         expect(table.state('rowUnderEditId')).toEqual(3);
         expect(table.state('columnUnderEditId')).toEqual(4);
+    });
+
+    it('saves the changes when clicking on another row', (done) => {
+        const mockOnUpdateRow = jest.fn(() => Promise.resolve());
+        table = mount(<Table columns={[{
+            label: 'Name',
+            name: 'name',
+            value: 'name',
+            filterable: true,
+            filterType: 'text',
+            filterableProperty: 'name',
+            editable: true,
+            sortable: true,
+            sortableProperty: 'name',
+            updateFunction: jest.fn(),
+        }]} data={[{id: 1}, {id: 2}]} onDeleteRow={mockOnDeleteRowResolve} onUpdateRow={mockOnUpdateRow} />);
+
+        table.find('EditableTextField').first().simulate('click');
+        table.find('EditableTextField input').simulate('change', {target: {value: 'testValue'}});
+        expect(table.state('changedValues')).toEqual({name: 'testValue'});
+        table.find('EditableTextField').last().simulate('click');
+        setImmediate(() => {
+            expect(mockOnUpdateRow).toBeCalled();
+            expect(table.state('changedValues')).toEqual({});
+            expect(table.state('isMessageActive')).toEqual(true);
+            expect(table.state('messageText')).toEqual('Selected row edited successfully');
+            expect(table.state('messageType')).toEqual('ok');
+            done();
+        });
+    });
+
+    it('drops the changes if save fails when clicking on another row ', (done) => {
+        const mockOnUpdateRow = jest.fn(() => Promise.reject());
+        table = mount(<Table columns={[{
+            label: 'Name',
+            name: 'name',
+            value: 'name',
+            filterable: true,
+            filterType: 'text',
+            filterableProperty: 'name',
+            editable: true,
+            sortable: true,
+            sortableProperty: 'name',
+            updateFunction: jest.fn(),
+        }]} data={[{id: 1}, {id: 2}]} onDeleteRow={mockOnDeleteRowResolve} onUpdateRow={mockOnUpdateRow} />);
+
+        table.find('EditableTextField').first().simulate('click');
+        table.find('EditableTextField input').simulate('change', {target: {value: 'testValue'}});
+        expect(table.state('changedValues')).toEqual({name: 'testValue'});
+        table.find('EditableTextField').last().simulate('click');
+        process.nextTick(() => {
+            try {
+                expect(mockOnUpdateRow).toBeCalled();
+                expect(table.state('changedValues')).toEqual({});
+                expect(table.state('isMessageActive')).toEqual(true);
+                expect(table.state('messageText')).toEqual('Selected row could not be saved');
+                expect(table.state('messageType')).toEqual('error');
+            } catch (e) {
+                return done(e);
+            }
+            done();
+        });
+    });
+
+    it('saves the changes when clicking on save button', (done) => {
+        const mockOnUpdateRow = jest.fn(() => Promise.resolve());
+        table = mount(<Table columns={[{
+            label: 'Name',
+            name: 'name',
+            value: 'name',
+            filterable: true,
+            filterType: 'text',
+            filterableProperty: 'name',
+            editable: true,
+            sortable: true,
+            sortableProperty: 'name',
+            updateFunction: jest.fn(),
+        }]} data={[{id: 1}]} onDeleteRow={mockOnDeleteRowResolve} onUpdateRow={mockOnUpdateRow} />);
+
+        table.find('EditableTextField').simulate('click');
+        table.find('EditableTextField input').simulate('change', {target: {value: 'testValue'}});
+        expect(table.state('changedValues')).toEqual({name: 'testValue'});
+        table.find('TableButton span').first().simulate('click');
+        process.nextTick(() => {
+            try {
+                expect(mockOnUpdateRow).toBeCalled();
+                expect(table.state('changedValues')).toEqual({});
+                expect(table.state('isMessageActive')).toEqual(true);
+                expect(table.state('messageText')).toEqual('Selected row edited successfully');
+                expect(table.state('messageType')).toEqual('ok');
+                expect(table.state('rowUnderEdit')).toEqual(false);
+            } catch (e) {
+                return done(e);
+            }
+            done();
+        });
+    });
+
+    it('drops the changes when clicking on cancel button', (done) => {
+        const mockOnUpdateRow = jest.fn(() => Promise.resolve());
+        table = mount(<Table columns={[{
+            label: 'Name',
+            name: 'name',
+            value: 'name',
+            filterable: true,
+            filterType: 'text',
+            filterableProperty: 'name',
+            editable: true,
+            sortable: true,
+            sortableProperty: 'name',
+            updateFunction: jest.fn(),
+        }]} data={[{id: 1}]} onDeleteRow={mockOnDeleteRowResolve} onUpdateRow={mockOnUpdateRow} />);
+
+        table.find('EditableTextField').simulate('click');
+        table.find('EditableTextField input').simulate('change', {target: {value: 'testValue'}});
+        expect(table.state('changedValues')).toEqual({name: 'testValue'});
+        table.find('TableButton span').last().simulate('click');
+        process.nextTick(() => {
+            try {
+                expect(table.state('changedValues')).toEqual({});
+                expect(table.state('rowUnderEdit')).toEqual(false);
+            } catch (e) {
+                return done(e);
+            }
+            done();
+        });
     });
 
     it('calculates start index', () => {
@@ -321,8 +447,6 @@ describe('Table', () => {
     });
 
     it('renders custom buttons', () => {
-        const mockButtonHandler = jest.fn();
-
         table = shallow(<Table columns={[{
                 label: 'Name',
                 name: 'name',
@@ -338,7 +462,7 @@ describe('Table', () => {
         buttons={[
             {
                 icon: { type: 'icon', name: 'edit' },
-                handler: mockButtonHandler,
+                handler: jest.fn(),
             },
             {
                 renderer: () => <h1>{'testH1'}</h1>,
@@ -346,11 +470,7 @@ describe('Table', () => {
         ]}
         data={[{id: 1, name: 'testValue'}]} />);
 
-        expect(table.find('ul > li > span.icon-edit').length).toEqual(1);
-        table.find('ul > li > span.icon-edit').simulate('click');
-        expect(mockButtonHandler).toBeCalled();
-        expect(table.find('ul > li > h1').length).toEqual(1);
-        expect(table.find('ul > li > h1').text()).toEqual('testH1');
+        expect(table.find('CustomButtons').length).toEqual(1);
     });
 
     it('initializes filters', () => {

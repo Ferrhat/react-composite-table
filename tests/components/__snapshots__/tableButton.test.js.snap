@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableButton renders properly 1`] = `
+<li
+  className="list-inline-item"
+>
+  <span
+    className="icon icon-delete"
+    onClick={[MockFunction]}
+  />
+</li>
+`;
