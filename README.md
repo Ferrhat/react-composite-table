@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/davidcsejtei/react-composite-table.svg?branch=master)](https://travis-ci.org/davidcsejtei/react-composite-table) [![Coverage Status](https://coveralls.io/repos/github/davidcsejtei/react-composite-table/badge.svg)](https://coveralls.io/github/davidcsejtei/react-composite-table)
+[![Build Status](https://travis-ci.org/davidcsejtei/react-composite-table.svg?branch=master)](https://travis-ci.org/davidcsejtei/react-composite-table) [![Coverage Status](https://coveralls.io/repos/github/davidcsejtei/react-composite-table/badge.svg?branch=master)](https://coveralls.io/github/davidcsejtei/react-composite-table?branch=master)
 
 # How to use React Composite Table
 
@@ -95,7 +95,7 @@ class UserTable extends Component {
                     sortableProperty: 'name'
                 }
             ];
-            
+
             return (
                 <Table2
                     data={this.props.allUsers}
@@ -116,7 +116,7 @@ export default connect(null, {updateUserNameField, deleteRow})(UserTable);
 
 # For package developers
 
-##Steps:
+## Steps:
 - Clone github repository to your local computer
 - Go to the library folder and run 'npm run build' to make a build and watch modification
-- Open your project and include the library with 'npm link react-composite-table' 
+- Open your project and include the library with 'npm link react-composite-table'
