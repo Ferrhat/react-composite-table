@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Table renders properly 1`] = `
-<div>
+<div
+  className="container-fluid table-component"
+>
   <Modal
     animation={true}
     autoFocus={true}
