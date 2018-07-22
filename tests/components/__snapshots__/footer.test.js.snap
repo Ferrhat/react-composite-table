@@ -46,7 +46,8 @@ exports[`Footer renders properly 1`] = `
           id="total-rows-number"
         >
           <span>
-            Total: 
+            Total
+            : 
             <span>
               3
             </span>
@@ -75,9 +76,6 @@ exports[`Footer renders properly 1`] = `
               className="icon icon-back"
             />
           </button>
-          <span>
-            Page
-          </span>
           <input
             className="n-inputfield form-control"
             id="current-page-number"
@@ -145,7 +143,7 @@ exports[`Footer renders properly 1`] = `
             className="n-table-suffix"
           >
             <span>
-              Items per page
+              items per page
             </span>
           </div>
         </div>
