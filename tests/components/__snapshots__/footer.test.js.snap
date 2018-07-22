@@ -141,6 +141,7 @@ exports[`Footer renders properly 1`] = `
           </div>
           <div
             className="n-table-suffix"
+            id="itemsPerPageText"
           >
             <span>
               items per page
