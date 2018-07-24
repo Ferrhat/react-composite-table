@@ -1,6 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import Table from '../../lib/components/table';
+import {flushPromises} from '../helper/index';
 
 
 describe('Table', () => {
@@ -10,6 +11,20 @@ describe('Table', () => {
     jest.spyOn(lodash, 'delay').mockImplementation((f) => {
         return f;
     });
+
+    jest.spyOn(lodash, 'debounce').mockImplementation((f) => {
+        return f;
+    });
+
+    const requiredField = () => ({
+        name: 'requiredField',
+        rule: (value) => value !== '',
+        message: ` This field is required! `
+    });
+
+    const validators = [
+        requiredField(),
+    ];
 
     const mockOnDeleteRowResolve = jest.fn(() => Promise.resolve());
     const mockOnDeleteRowReject = jest.fn(() => Promise.reject('error'));
@@ -225,6 +240,66 @@ describe('Table', () => {
             expect(table.state('isMessageActive')).toEqual(true);
             expect(table.state('messageText')).toEqual('Selected row edited successfully');
             expect(table.state('messageType')).toEqual('ok');
+            done();
+        });
+    });
+
+    it('saves the row when pressing enter in a field', async () => {
+        const mockOnUpdateRow = jest.fn(() => Promise.resolve());
+        table = mount(<Table columns={[{
+            label: 'Name',
+            name: 'name',
+            value: 'name',
+            filterable: true,
+            filterType: 'text',
+            filterableProperty: 'name',
+            editable: true,
+            sortable: true,
+            sortableProperty: 'name',
+            updateFunction: jest.fn(),
+        }]} data={[{id: 1}]} onDeleteRow={mockOnDeleteRowResolve} onUpdateRow={mockOnUpdateRow} />);
+
+        table.find('EditableTextField').simulate('click');
+        table.find('EditableTextField input').simulate('change', {target: {value: 'testValue'}});
+        expect(table.state('changedValues')).toEqual({name: 'testValue'});
+        table.find('EditableTextField input').simulate('keydown', {key: 'Enter'});
+        await flushPromises();
+
+        expect(mockOnUpdateRow).toBeCalled();
+        expect(table.state('changedValues')).toEqual({});
+        expect(table.state('isMessageActive')).toEqual(true);
+        expect(table.state('messageText')).toEqual('Selected row edited successfully');
+        expect(table.state('messageType')).toEqual('ok');
+    });
+
+    it(`doesn't save the changes when clicking on another row with invalid values`, (done) => {
+        const mockOnUpdateRow = jest.fn(() => Promise.resolve());
+        table = mount(<Table columns={[{
+            label: 'Name',
+            name: 'name',
+            value: 'name',
+            filterable: true,
+            filterType: 'text',
+            filterableProperty: 'name',
+            editable: true,
+            sortable: true,
+            sortableProperty: 'name',
+            updateFunction: jest.fn(),
+            validators,
+        }]} data={[{id: 1}, {id: 2}]} onDeleteRow={mockOnDeleteRowResolve} onUpdateRow={mockOnUpdateRow} />);
+
+        table.find('EditableTextField').first().simulate('click');
+        table.setState({changedValues: {name: ''}, isRowValid: false});
+        table.find('EditableTextField').last().simulate('click');
+
+        process.nextTick(() => {
+            try {
+                expect(table.state('isMessageActive')).toEqual(true);
+                expect(table.state('messageText')).toEqual('Selected row could not be saved');
+                expect(table.state('messageType')).toEqual('error');
+            } catch (e) {
+                return done(e);
+            }
             done();
         });
     });

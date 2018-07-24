@@ -11,6 +11,16 @@ exports[`EditableDateField renders properly 1`] = `
   onClickEditRow={[MockFunction]}
   onUpdateField={[Function]}
   rowId={1}
+  validateRow={[MockFunction]}
+  validators={
+    Array [
+      Object {
+        "message": " This field is required! ",
+        "name": "requiredField",
+        "rule": [Function],
+      },
+    ]
+  }
 >
   <td
     key="testValue"

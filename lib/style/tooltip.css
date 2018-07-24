@@ -1,0 +1,7 @@
+.tippy-tooltip.red-theme {
+    background-color: red;
+}
+
+.tippy-tooltip.red-theme [x-arrow] {
+    border-top-color: red;
+}
