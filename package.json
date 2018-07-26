@@ -1,6 +1,6 @@
 {
   "name": "react-composite-table",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "main": "./library/react-composite-table.js",
   "module": "./library/react-composite-table.js",
@@ -24,6 +24,7 @@
     "react-datepicker": "^1.2.1",
     "react-dom": "^16.2.0",
     "react-select": "^1.2.1",
+    "react-tippy": "^1.2.2",
     "sfcookies": "^1.0.2"
   },
   "devDependencies": {

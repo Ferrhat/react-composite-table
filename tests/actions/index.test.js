@@ -1,4 +1,4 @@
-import {filterByLabel, filterByMultiSelectLabel, sorting} from '../../lib/actions/index';
+import {filterByLabel, filterByMultiSelectLabel, sorting, validateField} from '../../lib/actions/index';
 
 describe('filterByLabel', () => {
     const data = [{'testProperty': 'testValue1'}, {'testProperty': 'testValue2'}];
@@ -49,4 +49,28 @@ describe('sorting', () => {
         const result = sorting(data[1], data[0], 'DESC', 'testProperty');
         expect(result).toEqual(-1);
     });
+});
+
+describe('validateField', () => {
+
+    const requiredField = () => ({
+        name: 'requiredField',
+        rule: (value) => value !== '',
+        message: ` This field is required! `
+    });
+
+    const validators = [
+        requiredField(),
+    ];
+
+    it('returns array of failed validators if the value is invalid', () => {
+        const result = validateField(validators, '');
+        expect(result).toEqual(validators);
+    });
+
+    it('returns empty array if the value is valid', () => {
+        const result = validateField(validators, 'validValue');
+        expect(result).toEqual([]);
+    });
+
 });

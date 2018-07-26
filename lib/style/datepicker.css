@@ -1,0 +1,7 @@
+div.react-datepicker-wrapper {
+    width: 100%;
+}
+
+div.react-datepicker-wrapper > div {
+    width: 100%;
+}
