@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1532940329461" clover="3.2.0">
-  <project timestamp="1532940329461" name="All files">
-    <metrics statements="450" coveredstatements="450" conditionals="215" coveredconditionals="212" methods="162" coveredmethods="162" elements="827" coveredelements="824" complexity="0" loc="450" ncloc="450" packages="6" files="15" classes="15">
+<coverage generated="1533218226076" clover="3.2.0">
+  <project timestamp="1533218226076" name="All files">
+    <metrics statements="450" coveredstatements="450" conditionals="215" coveredconditionals="212" methods="163" coveredmethods="163" elements="828" coveredelements="825" complexity="0" loc="450" ncloc="450" packages="6" files="15" classes="15">
       <package name="lib.actions">
         <metrics statements="17" coveredstatements="17" conditionals="8" coveredconditionals="8" methods="8" coveredmethods="8"/>
         <file name="index.js" path="C:\wamp64\www\react-composite-table\lib\actions\index.js">
@@ -26,9 +26,9 @@
         </file>
       </package>
       <package name="lib.components">
-        <metrics statements="232" coveredstatements="232" conditionals="127" coveredconditionals="124" methods="79" coveredmethods="79"/>
+        <metrics statements="232" coveredstatements="232" conditionals="127" coveredconditionals="124" methods="80" coveredmethods="80"/>
         <file name="customButtons.js" path="C:\wamp64\www\react-composite-table\lib\components\customButtons.js">
-          <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+          <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
           <line num="5" count="28" type="stmt"/>
           <line num="7" count="28" type="stmt"/>
           <line num="12" count="4" type="cond" truecount="2" falsecount="0"/>

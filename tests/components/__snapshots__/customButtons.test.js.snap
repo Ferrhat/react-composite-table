@@ -8,6 +8,7 @@ exports[`CustomButtons renders properly 1`] = `
   >
     <span
       className="icon icon-edit"
+      onClick={[Function]}
     >
        
        
