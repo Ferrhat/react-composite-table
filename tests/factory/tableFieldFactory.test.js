@@ -13,6 +13,11 @@ describe('tableFieldFactory', () => {
         expect(get(result, 'type.name', '')).toEqual('EditableSelectField');
     });
 
+    it('returns an EditableMultiSelectField component if type is multiselect', () => {
+        const result = tableFieldFactory.build({type: 'multiselect', column: {value: ''}});
+        expect(get(result, 'type.name', '')).toEqual('EditableMultiSelectField');
+    });
+
     it('returns an EditableDateField component if type is date', () => {
         const result = tableFieldFactory.build({type: 'date', column: {value: ''}});
         expect(get(result, 'type.name', '')).toEqual('EditableDateField');
