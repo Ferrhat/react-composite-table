@@ -1,6 +1,6 @@
 {
   "name": "react-composite-table",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "",
   "main": "./library/react-composite-table.js",
   "module": "./library/react-composite-table.js",
