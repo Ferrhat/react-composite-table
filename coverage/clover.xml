@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1535446308945" clover="3.2.0">
-  <project timestamp="1535446308945" name="All files">
-    <metrics statements="510" coveredstatements="510" conditionals="237" coveredconditionals="234" methods="186" coveredmethods="186" elements="933" coveredelements="930" complexity="0" loc="510" ncloc="510" packages="6" files="16" classes="16">
+<coverage generated="1536049920979" clover="3.2.0">
+  <project timestamp="1536049920979" name="All files">
+    <metrics statements="514" coveredstatements="514" conditionals="241" coveredconditionals="238" methods="187" coveredmethods="187" elements="942" coveredelements="939" complexity="0" loc="514" ncloc="514" packages="6" files="16" classes="16">
       <package name="lib.actions">
-        <metrics statements="17" coveredstatements="17" conditionals="8" coveredconditionals="8" methods="8" coveredmethods="8"/>
+        <metrics statements="21" coveredstatements="21" conditionals="12" coveredconditionals="12" methods="9" coveredmethods="9"/>
         <file name="index.js" path="C:\wamp64\www\react-composite-table\lib\actions\index.js">
-          <metrics statements="17" coveredstatements="17" conditionals="8" coveredconditionals="8" methods="8" coveredmethods="8"/>
-          <line num="4" count="5" type="stmt"/>
-          <line num="5" count="7" type="stmt"/>
-          <line num="6" count="7" type="stmt"/>
-          <line num="12" count="2" type="stmt"/>
-          <line num="13" count="3" type="stmt"/>
-          <line num="14" count="3" type="stmt"/>
-          <line num="19" count="7" type="stmt"/>
-          <line num="20" count="7" type="stmt"/>
-          <line num="22" count="7" type="cond" truecount="2" falsecount="0"/>
-          <line num="23" count="1" type="stmt"/>
-          <line num="24" count="6" type="cond" truecount="2" falsecount="0"/>
-          <line num="25" count="3" type="cond" truecount="2" falsecount="0"/>
-          <line num="27" count="3" type="cond" truecount="2" falsecount="0"/>
-          <line num="32" count="81" type="stmt"/>
-          <line num="33" count="55" type="stmt"/>
-          <line num="34" count="55" type="stmt"/>
-          <line num="36" count="81" type="stmt"/>
+          <metrics statements="21" coveredstatements="21" conditionals="12" coveredconditionals="12" methods="9" coveredmethods="9"/>
+          <line num="4" count="6" type="stmt"/>
+          <line num="5" count="9" type="stmt"/>
+          <line num="6" count="9" type="cond" truecount="2" falsecount="0"/>
+          <line num="7" count="3" type="stmt"/>
+          <line num="9" count="9" type="stmt"/>
+          <line num="15" count="3" type="stmt"/>
+          <line num="16" count="5" type="stmt"/>
+          <line num="17" count="5" type="cond" truecount="2" falsecount="0"/>
+          <line num="18" count="2" type="stmt"/>
+          <line num="20" count="3" type="stmt"/>
+          <line num="25" count="7" type="stmt"/>
+          <line num="26" count="7" type="stmt"/>
+          <line num="28" count="7" type="cond" truecount="2" falsecount="0"/>
+          <line num="29" count="1" type="stmt"/>
+          <line num="30" count="6" type="cond" truecount="2" falsecount="0"/>
+          <line num="31" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="33" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="38" count="81" type="stmt"/>
+          <line num="39" count="55" type="stmt"/>
+          <line num="40" count="55" type="stmt"/>
+          <line num="42" count="81" type="stmt"/>
         </file>
       </package>
       <package name="lib.components">
