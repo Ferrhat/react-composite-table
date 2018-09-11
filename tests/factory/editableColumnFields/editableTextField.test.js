@@ -118,6 +118,27 @@ describe('EditableTextField', () => {
         expect(getErrorsNow).toHaveBeenCalledTimes(1);
     });
 
+    it(`doesn't save the field changes if the value is not changed`, async () => {
+        const mockOnUpdateField = jest.fn(() => Promise.resolve());
+        const mockOnFinishEditRow = jest.fn();
+        const mockHandleShowMessage = jest.fn();
+
+        editableTextField.setProps({
+            onUpdateRow: null,
+            rowUnderEdit: true,
+            onUpdateField: mockOnUpdateField,
+            handleShowMessage: mockHandleShowMessage,
+            onFinishEditRow: mockOnFinishEditRow,
+        });
+        expect(editableTextField.state('currentValue')).toEqual('testValue');
+        editableTextField.find('input').simulate('keydown', {key: 'Enter'});
+        await flushPromises();
+        expect(editableTextField.state('value')).toEqual('testValue');
+        expect(mockOnUpdateField).not.toBeCalled();
+        expect(mockOnFinishEditRow).toBeCalledWith(1, 'testName');
+        expect(mockHandleShowMessage).not.toBeCalled();
+    });
+
     it('displays an error if the field changes cannot be saved', async () => {
         const getErrorsNow = jest.spyOn(editableTextField.instance(), 'getErrorsNow');
         getErrorsNow.mockClear();
@@ -189,7 +210,7 @@ describe('EditableTextField', () => {
         const getErrorsNow = jest.spyOn(editableTextField.instance(), 'getErrorsNow');
         getErrorsNow.mockClear();
         const mockOnUpdateField = jest.fn(() => Promise.resolve());
-        const mockOnUpdateRow = jest.fn(() => Promise.resolve());
+        const mockOnUpdateRow = jest.fn(() => Promise.resolve('saved'));
 
         editableTextField.setProps({
             onUpdateRow: mockOnUpdateRow,
@@ -229,7 +250,7 @@ describe('EditableTextField', () => {
         const getErrors = jest.spyOn(editableTextField.instance(), 'getErrors');
         getErrors.mockClear();
 
-        const mockOnUpdateRow = jest.fn(() => Promise.resolve());
+        const mockOnUpdateRow = jest.fn(() => Promise.resolve('saved'));
         const mockOnFinishEditRow = jest.fn();
         const mockHandleShowMessage = jest.fn();
 
@@ -253,6 +274,25 @@ describe('EditableTextField', () => {
 
         expect(getErrors).toHaveBeenCalledTimes(1);
         expect(getErrorsNow).toHaveBeenCalledTimes(1);
+    });
+
+    it(`doesn't save the row changes if the value is not changed`, async () => {
+        const mockOnUpdateRow = jest.fn(() => Promise.resolve('canceled'));
+        const mockOnFinishEditRow = jest.fn();
+        const mockHandleShowMessage = jest.fn();
+
+        editableTextField.setProps({
+            rowUnderEdit: true,
+            onUpdateRow: mockOnUpdateRow,
+            handleShowMessage: mockHandleShowMessage,
+            onFinishEditRow: mockOnFinishEditRow,
+        });
+        editableTextField.find('input').simulate('keydown', {key: 'Enter'});
+        await flushPromises();
+
+        expect(mockOnUpdateRow).toBeCalled();
+        expect(mockOnFinishEditRow).toBeCalledWith(1, 'testName');
+        expect(mockHandleShowMessage).not.toBeCalled();
     });
 
     it('displays an error if the row changes cannot be saved', async () => {

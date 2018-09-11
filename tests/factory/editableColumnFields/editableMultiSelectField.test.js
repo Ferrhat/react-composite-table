@@ -84,6 +84,7 @@ describe('EditableMultiSelectField', () => {
         const mockOnFinishEditRow = jest.fn();
 
         editableMultiSelectField.setProps({onUpdateField: mockOnUpdateField, handleShowMessage: mockHandleShowMessage, onFinishEditRow: mockOnFinishEditRow });
+        editableMultiSelectField.find('Select').simulate('change', [{value: 1, label: 'Hungary'}]);
         editableMultiSelectField.find('Select').simulate('blur');
         await flushPromises();
         expect(mockOnFinishEditRow).toBeCalled();
@@ -101,6 +102,7 @@ describe('EditableMultiSelectField', () => {
         const mockOnFinishEditRow = jest.fn();
 
         editableMultiSelectField.setProps({onUpdateField: mockOnUpdateField, handleShowMessage: mockHandleShowMessage, onFinishEditRow: mockOnFinishEditRow });
+        editableMultiSelectField.find('Select').simulate('change', [{value: 1, label: 'Hungary'}]);
         editableMultiSelectField.find('Select').simulate('blur');
         await flushPromises();
         expect(mockOnFinishEditRow).toBeCalled();
@@ -190,7 +192,7 @@ describe('EditableMultiSelectField', () => {
         const getErrorsNow = jest.spyOn(editableMultiSelectField.instance(), 'getErrorsNow');
         getErrorsNow.mockClear();
 
-        const mockOnUpdateRow = jest.fn(() => Promise.resolve());
+        const mockOnUpdateRow = jest.fn(() => Promise.resolve('saved'));
         const mockHandleShowMessage = jest.fn();
         const mockOnFinishEditRow = jest.fn();
 
@@ -201,6 +203,34 @@ describe('EditableMultiSelectField', () => {
 
         expect(mockHandleShowMessage).toBeCalledWith('Selected row edited successfully', 'ok');
         expect(getErrorsNow).toHaveBeenCalledTimes(1);
+    });
+
+    it(`doesn't save the row changes if the value is not changed`, async () => {
+        editableMultiSelectField = mount(
+            <EditableMultiSelectField
+                value={[{value: 1, label: 'Hungary'}]}
+                column={{ name: 'testName', value: 'testValue' }}
+                selectOptions={[{value: 1, label: 'Hungary'}]}
+                onClickEditRow={mockOnClickEditRow}
+                onChangeEditRow={mockOnChangeEditRow}
+                rowId={1}
+                onUpdateField={() => Promise.resolve()}
+                rowUnderEdit={true}
+                validateRow={mockValidateRow}
+                validators={validators}
+            />
+        );
+
+        const mockOnUpdateRow = jest.fn(() => Promise.resolve('canceled'));
+        const mockHandleShowMessage = jest.fn();
+        const mockOnFinishEditRow = jest.fn();
+
+        editableMultiSelectField.setProps({onUpdateRow: mockOnUpdateRow, handleShowMessage: mockHandleShowMessage, onFinishEditRow: mockOnFinishEditRow });
+        editableMultiSelectField.find('Select input').last().simulate('keydown', {key: 'Enter'});
+        await flushPromises();
+        expect(mockOnFinishEditRow).toBeCalled();
+
+        expect(mockHandleShowMessage).not.toBeCalled();
     });
 
     it(`doesn't save the changes on enter if the value is invalid`, async () => {
@@ -223,7 +253,7 @@ describe('EditableMultiSelectField', () => {
 
         editableMultiSelectField.setState({currentValue: []});
 
-        const mockOnUpdateRow = jest.fn(() => Promise.resolve());
+        const mockOnUpdateRow = jest.fn(() => Promise.resolve('saved'));
         const mockHandleShowMessage = jest.fn();
         const mockOnFinishEditRow = jest.fn();
 
@@ -246,6 +276,7 @@ describe('EditableMultiSelectField', () => {
                 value={[{value: 1, label: 'Hungary'}]}
                 column={{ name: 'testName', value: 'testValue' }}
                 selectOptions={[{value: 1, label: 'Hungary'}]}
+                onChangeEditRow={mockOnChangeEditRow}
                 rowId={1}
                 rowUnderEdit={true}
                 onUpdateField={mockOnUpdateField}
@@ -259,6 +290,7 @@ describe('EditableMultiSelectField', () => {
         getErrorsNow.mockClear();
 
         editableMultiSelectField.setState({currentValue: [{value: 1, label: 'Hungary'}]});
+        editableMultiSelectField.instance().onChangeValue([{value: 1, label: 'Hungary'}]);
         editableMultiSelectField.find('Select input').last().simulate('keydown', {key: 'Enter'});
         expect(mockOnUpdateField).toBeCalled();
         await flushPromises();
@@ -267,6 +299,32 @@ describe('EditableMultiSelectField', () => {
         expect(mockHandleShowMessage).toBeCalledWith('Selected row edited successfully', 'ok');
 
         expect(getErrorsNow).toHaveBeenCalledTimes(1);
+    });
+
+    it(`doesn't save the field changes if the value is not changed`, async () => {
+        const mockOnUpdateField = jest.fn(() => Promise.resolve());
+        const mockHandleShowMessage = jest.fn();
+        const mockOnFinishEditRow = jest.fn();
+
+        editableMultiSelectField = mount(
+            <EditableMultiSelectField
+                value={[{value: 1, label: 'Hungary'}]}
+                column={{ name: 'testName', value: 'testValue' }}
+                selectOptions={[{value: 1, label: 'Hungary'}]}
+                rowId={1}
+                rowUnderEdit={true}
+                onUpdateField={mockOnUpdateField}
+                handleShowMessage={mockHandleShowMessage}
+                onFinishEditRow={mockOnFinishEditRow}
+                validateRow={mockValidateRow}
+                validators={validators}
+            />
+        );
+
+        editableMultiSelectField.find('Select input').last().simulate('keydown', {key: 'Enter'});
+        expect(mockOnUpdateField).not.toBeCalled();
+        expect(mockOnFinishEditRow).toBeCalled();
+        expect(mockHandleShowMessage).not.toBeCalled();
     });
 
     it(`doesn't save field changes on any button press`, async () => {

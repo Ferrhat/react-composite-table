@@ -83,6 +83,7 @@ describe('EditableSelectField', () => {
         const mockOnFinishEditRow = jest.fn();
 
         editableSelectField.setProps({onUpdateField: mockOnUpdateField, handleShowMessage: mockHandleShowMessage, onFinishEditRow: mockOnFinishEditRow });
+        editableSelectField.find('Select').simulate('change', 'newValue');
         editableSelectField.find('Select').simulate('blur');
         await flushPromises();
         expect(mockOnFinishEditRow).toBeCalled();
@@ -100,6 +101,7 @@ describe('EditableSelectField', () => {
         const mockOnFinishEditRow = jest.fn();
 
         editableSelectField.setProps({onUpdateField: mockOnUpdateField, handleShowMessage: mockHandleShowMessage, onFinishEditRow: mockOnFinishEditRow });
+        editableSelectField.find('Select').simulate('change', {value: 1, label: 'Hungary'});
         editableSelectField.find('Select').simulate('blur');
         await flushPromises();
         expect(mockOnFinishEditRow).toBeCalled();
@@ -171,6 +173,38 @@ describe('EditableSelectField', () => {
     });
 
     it('saves row changes on enter successfully', async () => {
+        const mockOnUpdateRow = jest.fn(() => Promise.resolve('saved'));
+        const mockHandleShowMessage = jest.fn();
+        const mockOnFinishEditRow = jest.fn();
+
+        editableSelectField = mount(
+            <EditableSelectField
+                column={{ name: 'testName', value: 'testValue' }}
+                selectOptions={[{value: 1, label: 'Hungary'}]}
+                value={1}
+                onClickEditRow={mockOnClickEditRow}
+                onChangeEditRow={mockOnChangeEditRow}
+                rowId={1}
+                rowUnderEdit={true}
+                validateRow={mockValidateRow}
+                onUpdateRow={mockOnUpdateRow}
+                handleShowMessage={mockHandleShowMessage}
+                onFinishEditRow={mockOnFinishEditRow}
+            />
+        );
+        const getErrorsNow = jest.spyOn(editableSelectField.instance(), 'getErrorsNow');
+        getErrorsNow.mockClear();
+
+        editableSelectField.find('Select').simulate('change', {value: 1, label: 'Hungary'});
+        editableSelectField.find('Select input').last().simulate('keydown', {key: 'Enter'});
+        await flushPromises();
+        expect(mockOnFinishEditRow).toBeCalled();
+
+        expect(mockHandleShowMessage).toBeCalledWith('Selected row edited successfully', 'ok');
+        expect(getErrorsNow).toHaveBeenCalledTimes(1);
+    });
+
+    it(`doesn't save the row changes if the value is not changed`, async () => {
         editableSelectField = mount(
             <EditableSelectField
                 column={{ name: 'testName', value: 'testValue' }}
@@ -184,10 +218,8 @@ describe('EditableSelectField', () => {
                 validators={validators}
             />
         );
-        const getErrorsNow = jest.spyOn(editableSelectField.instance(), 'getErrorsNow');
-        getErrorsNow.mockClear();
 
-        const mockOnUpdateRow = jest.fn(() => Promise.resolve());
+        const mockOnUpdateRow = jest.fn(() => Promise.resolve('canceled'));
         const mockHandleShowMessage = jest.fn();
         const mockOnFinishEditRow = jest.fn();
 
@@ -196,8 +228,7 @@ describe('EditableSelectField', () => {
         await flushPromises();
         expect(mockOnFinishEditRow).toBeCalled();
 
-        expect(mockHandleShowMessage).toBeCalledWith('Selected row edited successfully', 'ok');
-        expect(getErrorsNow).toHaveBeenCalledTimes(1);
+        expect(mockHandleShowMessage).not.toBeCalled();
     });
 
     it(`doesn't save the changes on enter if the value is invalid`, async () => {
@@ -219,7 +250,7 @@ describe('EditableSelectField', () => {
 
         editableSelectField.setState({currentValue: ''});
 
-        const mockOnUpdateRow = jest.fn(() => Promise.resolve());
+        const mockOnUpdateRow = jest.fn(() => Promise.resolve('saved'));
         const mockHandleShowMessage = jest.fn();
         const mockOnFinishEditRow = jest.fn();
 
@@ -240,7 +271,8 @@ describe('EditableSelectField', () => {
         editableSelectField = mount(
             <EditableSelectField
                 column={{ name: 'testName', value: 'testValue' }}
-                selectOptions={[]}
+                selectOptions={[{value: 1, label: 'Hungary'}]}
+                onChangeEditRow={mockOnChangeEditRow}
                 rowId={1}
                 rowUnderEdit={true}
                 onUpdateField={mockOnUpdateField}
@@ -253,15 +285,40 @@ describe('EditableSelectField', () => {
         const getErrorsNow = jest.spyOn(editableSelectField.instance(), 'getErrorsNow');
         getErrorsNow.mockClear();
 
-        editableSelectField.setState({currentValue: 'testing'});
-        editableSelectField.find('Select input').simulate('keydown', {key: 'Enter'});
+        editableSelectField.instance().onChangeValue({value: 1, label: 'Hungary'});
+        editableSelectField.find('Select input').last().simulate('keydown', {key: 'Enter'});
         expect(mockOnUpdateField).toBeCalled();
         await flushPromises();
-        expect(editableSelectField.state('value')).toEqual('testing');
+        expect(editableSelectField.state('value')).toEqual({value: 1, label: 'Hungary'});
         expect(mockOnFinishEditRow).toBeCalled();
         expect(mockHandleShowMessage).toBeCalledWith('Selected row edited successfully', 'ok');
 
         expect(getErrorsNow).toHaveBeenCalledTimes(1);
+    });
+
+    it(`doesn't save the field changes if the value is not changed`, async () => {
+        const mockOnUpdateField = jest.fn(() => Promise.resolve());
+        const mockHandleShowMessage = jest.fn();
+        const mockOnFinishEditRow = jest.fn();
+
+        editableSelectField = mount(
+            <EditableSelectField
+                column={{ name: 'testName', value: 'testValue' }}
+                selectOptions={[]}
+                rowId={1}
+                rowUnderEdit={true}
+                onUpdateField={mockOnUpdateField}
+                handleShowMessage={mockHandleShowMessage}
+                onFinishEditRow={mockOnFinishEditRow}
+                validateRow={mockValidateRow}
+                validators={validators}
+            />
+        );
+
+        editableSelectField.find('Select input').simulate('keydown', {key: 'Enter'});
+        expect(mockOnUpdateField).not.toBeCalled();
+        expect(mockOnFinishEditRow).toBeCalled();
+        expect(mockHandleShowMessage).not.toBeCalled();
     });
 
     it(`doesn't save field changes on any button press`, async () => {

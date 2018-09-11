@@ -260,6 +260,10 @@ describe('Table', () => {
         }]} data={[{id: 1}]} onDeleteRow={mockOnDeleteRowResolve} onUpdateRow={mockOnUpdateRow} />);
 
         table.find('EditableTextField').simulate('click');
+        table.find('EditableTextField input').simulate('keydown', {key: 'Enter'});
+        expect(table.state('changedValues')).toEqual({});
+
+        table.find('EditableTextField').simulate('click');
         table.find('EditableTextField input').simulate('change', {target: {value: 'testValue'}});
         expect(table.state('changedValues')).toEqual({name: 'testValue'});
         table.find('EditableTextField input').simulate('keydown', {key: 'Enter'});
@@ -351,6 +355,10 @@ describe('Table', () => {
             sortableProperty: 'name',
             updateFunction: jest.fn(),
         }]} data={[{id: 1}]} onDeleteRow={mockOnDeleteRowResolve} onUpdateRow={mockOnUpdateRow} />);
+
+        table.find('EditableTextField').simulate('click');
+        expect(table.state('changedValues')).toEqual({});
+        table.find('TableButton span').first().simulate('click');
 
         table.find('EditableTextField').simulate('click');
         table.find('EditableTextField input').simulate('change', {target: {value: 'testValue'}});

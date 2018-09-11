@@ -8,6 +8,7 @@ exports[`EditableDateField renders properly 1`] = `
       "value": "testValue",
     }
   }
+  onChangeEditRow={[MockFunction]}
   onClickEditRow={[MockFunction]}
   onUpdateField={[Function]}
   rowId={1}

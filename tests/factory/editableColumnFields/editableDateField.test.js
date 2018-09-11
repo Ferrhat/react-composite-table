@@ -23,11 +23,13 @@ describe('EditableDateField', () => {
 
     const mockValidateRow = jest.fn();
     const mockOnClickEditRow = jest.fn();
+    const mockOnChangeEditRow = jest.fn();
     let editableDateField = mount(
         <EditableDateField
             column={{ name: 'testName', value: 'testValue' }}
             onClickEditRow={mockOnClickEditRow}
             validateRow={mockValidateRow}
+            onChangeEditRow={mockOnChangeEditRow}
             rowId={1}
             onUpdateField={() => Promise.resolve()}
             validators={validators}
@@ -79,6 +81,7 @@ describe('EditableDateField', () => {
             <EditableDateField
                 column={{ name: 'testName', value: 'testValue' }}
                 onClickEditRow={mockOnClickEditRow}
+                onChangeEditRow={mockOnChangeEditRow}
                 rowId={1}
                 onUpdateRow={null}
                 rowUnderEdit={true}
@@ -93,6 +96,7 @@ describe('EditableDateField', () => {
         getErrorsNow.mockClear();
 
         editableDateField.setState({currentValue: '2018-01-01'});
+        editableDateField.instance().onChangeValue(moment('2018-01-01'));
         editableDateField.instance().closeEdit();
         expect(mockOnUpdateField).toBeCalled();
         await flushPromises();
@@ -101,6 +105,36 @@ describe('EditableDateField', () => {
         expect(mockHandleShowMessage).toBeCalledWith('Selected row edited successfully', 'ok');
 
         expect(getErrorsNow).toHaveBeenCalledTimes(1);
+    });
+
+    it(`doesn't save the field changes if the value is not changed`, async () => {
+        const mockOnUpdateField = jest.fn(() => Promise.resolve());
+        const mockHandleShowMessage = jest.fn();
+        const mockOnFinishEditRow = jest.fn();
+
+        editableDateField = shallow(
+            <EditableDateField
+                column={{ name: 'testName', value: 'testValue' }}
+                onClickEditRow={mockOnClickEditRow}
+                onChangeEditRow={mockOnChangeEditRow}
+                rowId={1}
+                onUpdateRow={null}
+                rowUnderEdit={true}
+                onUpdateField={mockOnUpdateField}
+                handleShowMessage={mockHandleShowMessage}
+                onFinishEditRow={mockOnFinishEditRow}
+                validateRow={mockValidateRow}
+                validators={validators}
+            />
+        );
+
+        editableDateField.setState({currentValue: '2018-01-01'});
+        editableDateField.instance().closeEdit();
+        await flushPromises();
+
+        expect(mockOnUpdateField).not.toBeCalled();
+        expect(mockOnFinishEditRow).toBeCalled();
+        expect(mockHandleShowMessage).not.toBeCalled();
     });
 
     it('saves changes on outside click with error', async () => {
@@ -112,6 +146,7 @@ describe('EditableDateField', () => {
             <EditableDateField
                 column={{ name: 'testName', value: 'testValue' }}
                 onClickEditRow={mockOnClickEditRow}
+                onChangeEditRow={mockOnChangeEditRow}
                 rowId={1}
                 onUpdateRow={null}
                 rowUnderEdit={true}
@@ -127,6 +162,7 @@ describe('EditableDateField', () => {
         getErrorsNow.mockClear();
 
         editableDateField.setState({currentValue: '2018-01-01'});
+        editableDateField.instance().onChangeValue(moment('2018-01-01'));
         editableDateField.instance().closeEdit();
         expect(mockOnUpdateField).toBeCalled();
         await flushPromises();
@@ -169,7 +205,7 @@ describe('EditableDateField', () => {
 
     it(`doesn't save row changes on outside click`, async () => {
         const mockOnUpdateField = jest.fn(() => Promise.reject());
-        const mockOnUpdateRow = jest.fn(() => Promise.resolve());
+        const mockOnUpdateRow = jest.fn(() => Promise.resolve('saved'));
 
         editableDateField = shallow(
             <EditableDateField
@@ -201,6 +237,7 @@ describe('EditableDateField', () => {
             <EditableDateField
                 column={{ name: 'testName', value: 'testValue' }}
                 onClickEditRow={mockOnClickEditRow}
+                onChangeEditRow={mockOnChangeEditRow}
                 rowId={1}
                 onUpdateRow={null}
                 rowUnderEdit={true}
@@ -215,6 +252,7 @@ describe('EditableDateField', () => {
         getErrorsNow.mockClear();
 
         editableDateField.setState({currentValue: '2018-01-01'});
+        editableDateField.instance().onChangeValue(moment('2018-01-01'));
         editableDateField.find('DatePicker').simulate('keydown', {key: 'Escape'});
         expect(mockOnUpdateField).toBeCalled();
         await flushPromises();
@@ -258,7 +296,7 @@ describe('EditableDateField', () => {
     });
 
     it(`doesn't save changes on any key`, async () => {
-        const mockOnUpdateRow = jest.fn(() => Promise.resolve());
+        const mockOnUpdateRow = jest.fn(() => Promise.resolve('saved'));
 
         editableDateField = shallow(
             <EditableDateField
@@ -277,7 +315,7 @@ describe('EditableDateField', () => {
         expect(mockOnUpdateRow).not.toBeCalled();
     });
     it('saves row changes on enter successfully', async () => {
-        const mockOnUpdateRow = jest.fn(() => Promise.resolve());
+        const mockOnUpdateRow = jest.fn(() => Promise.resolve('saved'));
         const mockHandleShowMessage = jest.fn();
         const mockOnFinishEditRow = jest.fn();
 
@@ -307,6 +345,33 @@ describe('EditableDateField', () => {
         expect(mockHandleShowMessage).toBeCalledWith('Selected row edited successfully', 'ok');
 
         expect(getErrorsNow).toHaveBeenCalledTimes(1);
+    });
+
+    it(`doesn't save the row changes if the value is not changed`, async () => {
+        const mockOnUpdateRow = jest.fn(() => Promise.resolve('canceled'));
+        const mockHandleShowMessage = jest.fn();
+        const mockOnFinishEditRow = jest.fn();
+
+        editableDateField = shallow(
+            <EditableDateField
+                column={{ name: 'testName', value: 'testValue' }}
+                onClickEditRow={mockOnClickEditRow}
+                rowId={1}
+                onUpdateRow={null}
+                rowUnderEdit={true}
+                onUpdateRow={mockOnUpdateRow}
+                handleShowMessage={mockHandleShowMessage}
+                onFinishEditRow={mockOnFinishEditRow}
+                validateRow={mockValidateRow}
+                validators={validators}
+            />
+        );
+
+        editableDateField.setState({currentValue: '2018-01-01'});
+        editableDateField.find('DatePicker').simulate('keydown', {key: 'Enter'});
+        await flushPromises();
+        expect(mockOnFinishEditRow).toBeCalled();
+        expect(mockHandleShowMessage).not.toBeCalled();
     });
 
     it('saves row changes on enter with error', async () => {
