@@ -488,6 +488,108 @@ describe('Table', () => {
         expect(table.state('activeFilters')).toEqual({country_id: {value: [{label: 'Hungary', value: 1}], filterableProperty: 'country_id', type: 'multiSelect'}});
     });
 
+    it('handles multiselect with column relations', () => {
+
+        const testData = [{
+            "id": 0,
+            "country": {id: 1, name: "Hungary"},
+            "cities": [{
+                "label": "Budapest",
+                "value": 1
+            }]
+        }, {
+            "id": 2,
+            "country": {id: 2, name: "United Kingdom"},
+            "cities": [{
+                "label": "London",
+                "value": 1
+            }]
+        }];
+
+        table = mount(<Table columns={[{
+            label: 'Country',
+            name: 'country',
+            value: 'country.name',
+            filterable: true,
+            filterType: 'select',
+            filterableProperty: 'country.name',
+            editable: true,
+            sortable: true,
+            sortableProperty: 'country.name',
+            selectOptions: [{label: 'Hungary', value: 1}],
+            updateFunction: jest.fn(),
+            indexProperty: 'country.name',
+        },
+        {
+            label: 'Cities',
+            name: 'cities',
+            value: 'cities',
+            filterable: true,
+            filterType: 'select',
+            filterableProperty: 'cities',
+            editable: true,
+            sortable: true,
+            sortableProperty: 'cities',
+            selectOptions: {'Hungary': {cities: [{label: 'Budapest', value: 1}]}, 'United Kingdom': {cities: [{label: 'London', value: 2}]}},
+            selectOptionPath: 'country.cities',
+            updateFunction: jest.fn(),
+        }]} data={testData} onDeleteRow={mockOnDeleteRowResolve} />);
+
+        expect(table.find('tr[style] > EditableSelectField[value]').at(1).prop('selectOptions')).toEqual([{label: 'Budapest', value: 1}]);
+        expect(table.find('tr[style] > EditableSelectField[value]').at(3).prop('selectOptions')).toEqual([{label: 'London', value: 2}]);
+    });
+
+    it('handles multiselect with column relations and wrong parameters', () => {
+
+        const testData = [{
+            "id": 0,
+            "country": {id: 1, name: "Hungary"},
+            "cities": [{
+                "label": "Budapest",
+                "value": 1
+            }]
+        }, {
+            "id": 2,
+            "country": {id: 2, name: "United Kingdom"},
+            "cities": [{
+                "label": "London",
+                "value": 1
+            }]
+        }];
+
+        table = mount(<Table columns={[{
+            label: 'Country',
+            name: 'country',
+            value: 'country.name',
+            filterable: true,
+            filterType: 'select',
+            filterableProperty: 'country.name',
+            editable: true,
+            sortable: true,
+            sortableProperty: 'country.name',
+            selectOptions: [{label: 'Hungary', value: 1}],
+            updateFunction: jest.fn(),
+            indexProperty: 'country.name',
+        },
+        {
+            label: 'Cities',
+            name: 'cities',
+            value: 'cities',
+            filterable: true,
+            filterType: 'select',
+            filterableProperty: 'cities',
+            editable: true,
+            sortable: true,
+            sortableProperty: 'cities',
+            selectOptions: {'Hungary': {cities: [{label: 'Budapest', value: 1}]}, 'United Kingdom': {cities: [{label: 'London', value: 2}]}},
+            selectOptionPath: 'something.cities',
+            updateFunction: jest.fn(),
+        }]} data={testData} onDeleteRow={mockOnDeleteRowResolve} />);
+
+        expect(table.find('tr[style] > EditableSelectField[value]').at(1).prop('selectOptions')).toEqual([]);
+        expect(table.find('tr[style] > EditableSelectField[value]').at(3).prop('selectOptions')).toEqual([]);
+    });
+
     it('sorts by name', () => {
         table = shallow(<Table columns={[{
                 label: 'Name',
