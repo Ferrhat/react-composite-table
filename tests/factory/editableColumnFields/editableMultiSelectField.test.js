@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
-import EditableMultiSelectField from '../../../lib/factory/editableColumnFields/editableMultiSelectField';
+import EditableMultiSelectField from '../../../src/factory/editableColumnFields/editableMultiSelectField';
 import {flushPromises} from '../../helper/index';
 
 describe('EditableMultiSelectField', () => {

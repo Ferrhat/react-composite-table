@@ -1,4 +1,4 @@
-import {filterByLabel, filterByMultiSelectLabel, sorting, validateField} from '../../lib/actions/index';
+import {filterByLabel, filterByMultiSelectLabel, sorting, validateField} from '../../src/actions/index';
 
 describe('filterByLabel', () => {
     const data = [{'testProperty': 'testValue1'}, {'testProperty': 'testValue2'}];

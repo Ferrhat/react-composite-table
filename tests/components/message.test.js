@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Message from '../../lib/components/message';
+import Message from '../../src/components/message';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 

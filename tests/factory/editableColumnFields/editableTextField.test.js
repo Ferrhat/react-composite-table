@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
-import EditableTextField from '../../../lib/factory/editableColumnFields/editableTextField';
+import EditableTextField from '../../../src/factory/editableColumnFields/editableTextField';
 import {flushPromises} from '../../helper/index';
 
 describe('EditableTextField', () => {

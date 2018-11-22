@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import CustomButtons from '../../lib/components/customButtons';
+import CustomButtons from '../../src/components/customButtons';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import TableButton from '../../lib/components/tableButton';
+import TableButton from '../../src/components/tableButton';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 

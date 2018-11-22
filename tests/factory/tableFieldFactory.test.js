@@ -1,5 +1,5 @@
 import {get} from 'lodash';
-import tableFieldFactory from '../../lib/factory/tableFieldFactory';
+import tableFieldFactory from '../../src/factory/tableFieldFactory';
 
 describe('tableFieldFactory', () => {
 

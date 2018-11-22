@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {toNumber, ceil, get} from 'lodash';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDoubleLeft, faAngleDoubleRight, faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+
 export default class Footer extends Component {
 
     constructor(props) {
@@ -151,65 +154,87 @@ export default class Footer extends Component {
         this.props.onCurrentPageNumberChange(currentPageNumber);
     }
 
+    t2() {
+        return(
+            <td colSpan="6">
+                <div className="n-table-total" id='total-rows-number'>
+                    <span>{this.props.totalText ? this.props.totalText : 'Total'}: <span>{this.props.tableData.length}</span></span></div>
+                <div className="n-table-pagenum">
+                    <button type="button"
+                            id="first-button"
+                            className="btn btn-icon buttons"
+                            onClick={this.onClickFirstButton}>
+                        <FontAwesomeIcon icon={faAngleDoubleLeft} className="fa-sm" />
+                    </button>
+                    <button type="button"
+                            id="previous-button"
+                            className="btn btn-icon buttons"
+                            onClick={this.onClickPreviousButton}>
+                        <FontAwesomeIcon icon={faAngleLeft} className="fa-sm" />
+                    </button>
+                    <input
+                        id='current-page-number'
+                        value={this.state.currentPage}
+                        onChange={this.onCurrentPageChange}
+                        className="n-inputfield form-control"
+                        style={{zIndex: 0}}
+                    />
+                    <span id='total-number-of-pages'>/{this.state.allPagesNumber}</span>
+                    <button type="button"
+                            className="btn btn-icon buttons"
+                            id="next-button"
+                            onClick={this.onClickNextButton}>
+                        <FontAwesomeIcon icon={faAngleRight} className="fa-sm" />
+                    </button>
+                    <button id="last-button"
+                            type="button"
+                            className="btn btn-icon buttons"
+                            onClick={this.onClickLastButton}>
+                        <FontAwesomeIcon icon={faAngleDoubleRight} className="fa-sm" />
+                    </button>
+                </div>
+                <div className="n-table-pageselect">
+                    <div className="n-table-pagecombox">
+                        <div className="input-group input-append dropdown combobox n-page-combox">
+                            <input id='current-row-number'
+                                   type="number"
+                                   value={this.state.numberOfRows}
+                                   onChange={this.onNumberOfRowsChange}
+                                   name="quantity"
+                                   className="n-inputfield form-control"
+                                   style={{zIndex: 0}}
+                                   min="1"/>
+                        </div>
+                    </div>
+                    <div className="n-table-suffix" id="itemsPerPageText">
+                        <span>{this.props.itemsPerPageText ? this.props.itemsPerPageText : 'items per page'}</span>
+                    </div>
+                </div>
+            </td>
+        );
+    }
+
+    t() {
+        return(
+            <td colspan="2">
+                <div className="n-table-total" id='total-rows-number'>
+                    <span>{this.props.totalText ? this.props.totalText : 'Total'}: <span>{this.props.tableData.length}</span></span>
+                </div>
+                <button type="button"
+                        id="first-button"
+                        className="btn btn-icon buttons"
+                        onClick={this.onClickFirstButton}>
+                    <FontAwesomeIcon icon={faAngleDoubleLeft} className="fa-sm" />
+                </button>
+            </td>
+        );
+    }
+
     render() {
         return (
             <tfoot>
             <tr>
-                <td colSpan="6">
-                    <div className="n-table-total" id='total-rows-number'>
-                        <span>{this.props.totalText ? this.props.totalText : 'Total'}: <span>{this.props.tableData.length}</span></span></div>
-                    <div className="n-table-pagenum">
-                        <button type="button"
-                                id="first-button"
-                                className="btn btn-icon"
-                                onClick={this.onClickFirstButton}>
-                            <span className="icon icon-first"></span>
-                        </button>
-                        <button type="button"
-                                id="previous-button"
-                                className="btn btn-icon"
-                                onClick={this.onClickPreviousButton}>
-                            <span className="icon icon-back"></span>
-                        </button>
-                        <input
-                            id='current-page-number'
-                            value={this.state.currentPage}
-                            onChange={this.onCurrentPageChange}
-                            className="n-inputfield form-control"
-                            style={{zIndex: 0}}
-                        />
-                        <span id='total-number-of-pages'>/{this.state.allPagesNumber}</span>
-                        <button type="button"
-                                className="btn btn-icon"
-                                id="next-button"
-                                onClick={this.onClickNextButton}>
-                            <span className="icon icon-next"></span>
-                        </button>
-                        <button id="last-button"
-                                type="button"
-                                className="btn btn-icon"
-                                onClick={this.onClickLastButton}>
-                            <span className="icon icon-last"></span>
-                        </button>
-                    </div>
-                    <div className="n-table-pageselect">
-                        <div className="n-table-pagecombox">
-                            <div className="input-group input-append dropdown combobox n-page-combox">
-                                <input id='current-row-number'
-                                       type="number"
-                                       value={this.state.numberOfRows}
-                                       onChange={this.onNumberOfRowsChange}
-                                       name="quantity"
-                                       className="n-inputfield form-control"
-                                       style={{zIndex: 0}}
-                                       min="1"/>
-                            </div>
-                        </div>
-                        <div className="n-table-suffix" id="itemsPerPageText">
-                            <span>{this.props.itemsPerPageText ? this.props.itemsPerPageText : 'items per page'}</span>
-                        </div>
-                    </div>
-                </td>
+                {this.t()}
             </tr>
             </tfoot>
         );

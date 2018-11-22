@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
-import TextField from "../../../lib/factory/filterFields/textField";
+import TextField from "../../../src/factory/filterFields/textField";
 
 describe('TextField', () => {
     const mockOnChange = jest.fn();

@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import Table from '../../lib/components/table';
+import Table from '../../src/components/table';
 import {flushPromises} from '../helper/index';
 
 

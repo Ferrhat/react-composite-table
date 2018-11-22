@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
 import moment from 'moment';
-import EditableDateField from '../../../lib/factory/editableColumnFields/editableDateField';
+import EditableDateField from '../../../src/factory/editableColumnFields/editableDateField';
 import {flushPromises} from '../../helper/index';
 
 describe('EditableDateField', () => {

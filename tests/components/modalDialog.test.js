@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import ModalDialog from '../../lib/components/modalDialog';
+import ModalDialog from '../../src/components/modalDialog';
 
 describe('ModalDialog', () => {
     const modalDialog = shallow(<ModalDialog showDialog={true} />);
