@@ -1,2 +1,9 @@
-.babelrc
-lib
+.idea
+.vscode
+.storybook
+node_modules
+src
+webpack.config.js
+docs
+tests
+coverage

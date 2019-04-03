@@ -216,7 +216,7 @@ export default class Footer extends Component {
 
     t() {
         return(
-            <td colspan="2">
+            <td colSpan="2">
                 <div className="n-table-total" id='total-rows-number'>
                     <span>{this.props.totalText ? this.props.totalText : 'Total'}: <span>{this.props.tableData.length}</span></span>
                 </div>

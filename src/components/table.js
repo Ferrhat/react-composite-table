@@ -19,10 +19,10 @@ import FilterFactory from '../factory/filterFactory';
 
 import {validateField} from '../actions/index';
 
+import '../../style/default.scss';
 import 'react-tippy/dist/tippy.css';
-import '../style/tooltip.css';
-import '../style/datepicker.css';
-
+import '../../style/tooltip.css';
+import '../../style/datepicker.css';
 
 class Table2 extends Component {
     constructor(props) {
