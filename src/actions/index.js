@@ -1,8 +1,8 @@
-import {isEmpty, get, escapeRegExp, isArray, intersectionBy} from 'lodash';
+import {isEmpty, get, escapeRegExp, isArray, intersectionBy, defaultTo} from 'lodash';
 
 export function filterByLabel(data, filterableProperty, filterValue) {
     return data.filter(row => {
-            let value = get(row, filterableProperty);
+        let value = defaultTo(get(row, filterableProperty), '');
             if (isArray(value)) {
                 value = value.map(arrayItem => arrayItem.label).join(', ');
             }
@@ -14,10 +14,11 @@ export function filterByLabel(data, filterableProperty, filterValue) {
 export function filterByMultiSelectLabel(data, filterableProperty, filterValues) {
     return data.filter(row => {
         let value = get(row, filterableProperty);
+        const allFilterValues = isArray(filterValues) ? filterValues : [filterValues];
         if (isArray(value)) {
-            return intersectionBy(filterValues, value, 'value').length;
+            return intersectionBy(allFilterValues, value, 'value').length;
         }
-        return filterValues.find(filterValue => filterValue.value == value);
+        return allFilterValues.find(filterValue => filterValue.value == value);
     });
 }
 

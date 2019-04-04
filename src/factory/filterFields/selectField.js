@@ -29,12 +29,12 @@ class SelectField extends Component {
         return (
             <Select
                 value={this.state.value}
-                multi
+                isMulti
                 name={this.props.name}
                 style={{ height: "100%" }}
                 options={sortBy(this.props.options, 'value')}
                 onChange={this.onSelectChange}
-                backspaceRemoves={false}
+                backspaceRemovesValue={false}
             />
         )
     }

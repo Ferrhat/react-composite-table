@@ -157,15 +157,15 @@ class EditableMultiSelectField extends Component {
                     {tooltip(
                         <div>
                             <Select value={value}
-                                    multi
+                                    isMulti
                                     name={this.props.column.name}
                                     style={{height: "100%"}}
                                     options={sortBy(this.props.selectOptions, 'label')}
                                     onChange={this.onChangeValue}
                                     onBlur={this.onBlur}
-                                    onInputKeyDown={this.closeEdit}
+                                    onKeyDown={this.closeEdit}
                                     autoFocus={this.props.autoFocus}
-                                    backspaceRemoves={false}
+                                    backspaceRemovesValue={false}
                                     className={invalidClassName}
                             />
                         </div>

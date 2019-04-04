@@ -547,6 +547,7 @@ class Table2 extends Component {
                             defaultNumberOfRowsShow={this.state.numberOfRowsShow}
                             totalText={this.props.totalText}
                             itemsPerPageText={this.props.itemsPerPageText}
+                            numberOfColumns={this.props.columns.length}
                     />
                 </BsTable>
             </div>

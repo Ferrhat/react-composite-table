@@ -27,7 +27,7 @@ export default class Footer extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const pages = Math.round(nextProps.tableData.length / this.state.numberOfRows);
+        const pages = Math.ceil(nextProps.tableData.length / this.state.numberOfRows);
         const allPagesNumber = pages < 1 ? 1 : pages;
         const currentPage = this.state.currentPage;
 
@@ -156,7 +156,7 @@ export default class Footer extends Component {
 
     t2() {
         return(
-            <td colSpan="6">
+            <td colSpan={this.props.numberOfColumns + 1}>
                 <div className="n-table-total" id='total-rows-number'>
                     <span>{this.props.totalText ? this.props.totalText : 'Total'}: <span>{this.props.tableData.length}</span></span></div>
                 <div className="n-table-pagenum">
@@ -234,7 +234,7 @@ export default class Footer extends Component {
         return (
             <tfoot>
             <tr>
-                {this.t()}
+                {this.t2()}
             </tr>
             </tfoot>
         );

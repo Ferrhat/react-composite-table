@@ -160,9 +160,9 @@ class EditableSelectField extends Component {
                                     options={sortBy(this.props.selectOptions, 'label')}
                                     onChange={this.onChangeValue}
                                     onBlur={this.onBlur}
-                                    onInputKeyDown={this.closeEdit}
+                                    onKeyDown={this.closeEdit}
                                     autoFocus={this.props.autoFocus}
-                                    backspaceRemoves={false}
+                                    backspaceRemovesValue={false}
                                     className={invalidClassName}
                             />
                         </div>
