@@ -363,13 +363,6 @@ class Table2 extends Component {
                                 };
                                 const onFinishEditRow = () => this.onFinishEditRow(row.id, column.name);
 
-
-                                if (!column.filterType || !column.editable) {
-                                    return (
-                                        <td key={rowIndex+column.name}>{get(row, column.value)}</td>
-                                    );
-                                }
-
                                 const rowUnderEdit = () => {
                                     return this.state.rowUnderEdit &&
                                             this.state.rowUnderEditId == row.id &&
@@ -401,6 +394,16 @@ class Table2 extends Component {
                                     }
                                 }
 
+                                if (!column.filterType || !column.editable) {
+                                    let displayedValue = get(row, column.value);
+                                    if (column.filterType == 'select') {
+                                        displayedValue = get(selectOptions.find(option => option.value == displayedValue), 'label');
+                                    }
+                                    return (
+                                        <td key={rowIndex+column.name}>{displayedValue}</td>
+                                    );
+                                }
+
                                 const data = {
                                     type: type,
                                     key: column.name,
@@ -421,6 +424,7 @@ class Table2 extends Component {
                                     validators: column.validators,
                                     validateRow: this.validateRow,
                                     invalidClassName: this.props.invalidClassName,
+                                    dateFormat: this.props.dateFormat,
                                 };
                                 return TableFieldFactory.build(data);
                             })

@@ -148,6 +148,9 @@ class EditableDateField extends Component {
 
         if (this.props.rowUnderEdit) {
             let datum = moment(this.state.currentValue, "YYYY-MM-DD");
+            if (!datum.isValid()) {
+                datum = moment();
+            }
 
             return (
                 <td key={this.props.column.value}>
@@ -168,10 +171,14 @@ class EditableDateField extends Component {
                 </td>
             );
         }
+        let displayDate = this.props.value;
+        if (this.props.column.dateFormat) {
+            displayDate = moment(displayDate).format(this.props.column.dateFormat);
+        }
         return (
             <td key={this.props.column.value}
                 onClick={this.onClickEditRow}>
-                {this.props.value}
+                {displayDate}
             </td>
         );
     }
