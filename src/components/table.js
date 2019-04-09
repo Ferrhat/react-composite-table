@@ -7,6 +7,7 @@ import {
 } from 'react-bootstrap';
 import {isEmpty, isEqual, delay, get, defaultTo, find, isUndefined, isPlainObject} from 'lodash';
 import { read_cookie as readCookie, bake_cookie as bakeCookie, delete_cookie as deleteCookie } from 'sfcookies';
+import moment from 'moment';
 
 import {filterByLabel, filterByMultiSelectLabel, sorting} from '../actions/index';
 import Footer from './footer';
@@ -398,6 +399,9 @@ class Table2 extends Component {
                                     let displayedValue = get(row, column.value);
                                     if (column.filterType == 'select') {
                                         displayedValue = get(selectOptions.find(option => option.value == displayedValue), 'label');
+                                    }
+                                    if (column.updateType == 'date' && displayedValue && column.dateFormat) {
+                                        displayedValue = moment(displayedValue).format(column.dateFormat);
                                     }
                                     return (
                                         <td key={rowIndex+column.name}>{displayedValue}</td>

@@ -172,7 +172,7 @@ class EditableDateField extends Component {
             );
         }
         let displayDate = this.props.value;
-        if (this.props.column.dateFormat) {
+        if (this.props.value && this.props.column.dateFormat) {
             displayDate = moment(displayDate).format(this.props.column.dateFormat);
         }
         return (
