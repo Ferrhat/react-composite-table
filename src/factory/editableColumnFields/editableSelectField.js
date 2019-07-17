@@ -54,13 +54,13 @@ class EditableSelectField extends Component {
             this.setState({ isSaving: false, isEdited: false, value: this.state.currentValue });
             this.props.onFinishEditRow(this.props.rowId, this.props.column.name);
             if (status == 'saved') {
-                this.props.handleShowMessage('Selected row edited successfully', 'ok');
+                this.props.handleShowMessage(this.props.messages['editSuccess'], 'ok');
             }
         })
         .catch(() => {
             this.setState({ isSaving: false, isEdited: false, currentValue: this.props.value });
             this.props.onFinishEditRow(this.props.rowId, this.props.column.name);
-            this.props.handleShowMessage('Selected row could not be saved', 'error');
+            this.props.handleShowMessage(this.props.messages['editFailed'], 'error');
         });
     }
 
@@ -74,12 +74,12 @@ class EditableSelectField extends Component {
             .then(() => {
                 this.setState({ isSaving: false, isEdited: false, value: this.state.currentValue });
                 this.props.onFinishEditRow(this.props.rowId, this.props.column.name);
-                this.props.handleShowMessage('Selected row edited successfully', 'ok');
+                this.props.handleShowMessage(this.props.messages['editSuccess'], 'ok');
             })
             .catch(() => {
                 this.setState({ isSaving: false, isEdited: false, currentValue: this.props.value });
                 this.props.onFinishEditRow(this.props.rowId, this.props.column.name);
-                this.props.handleShowMessage('Selected row could not be saved', 'error');
+                this.props.handleShowMessage(this.props.messages['editFailed'], 'error');
             });
         } else {
             this.props.onFinishEditRow(this.props.rowId, this.props.column.name);

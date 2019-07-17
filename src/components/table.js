@@ -5,7 +5,7 @@ import {
     Modal,
     Glyphicon
 } from 'react-bootstrap';
-import {isEmpty, isEqual, delay, get, defaultTo, find, isUndefined, isPlainObject} from 'lodash';
+import {isEmpty, isEqual, delay, get, defaultTo, find, isUndefined, isPlainObject, cloneDeep} from 'lodash';
 import { read_cookie as readCookie, bake_cookie as bakeCookie, delete_cookie as deleteCookie } from 'sfcookies';
 import moment from 'moment';
 
@@ -31,7 +31,14 @@ class Table2 extends Component {
 
         const storedFilters = readCookie(this.props.name);
 
+        const sortBy = defaultTo(this.props.sortBy, {propertyName: 'id', order: 'ASC'});
         let tableData = this.props.data;
+
+        const propertyName = get(sortBy, 'propertyName', '');
+        if (propertyName) {
+            const order = get(sortBy, 'order', 'ASC');
+            tableData.sort((a, b) => sorting(a, b, order, propertyName));
+        }
 
         Object.entries(storedFilters).forEach(activeFilter => {
             const {type, filterableProperty, value} = activeFilter[1];
@@ -41,9 +48,9 @@ class Table2 extends Component {
         this.state = {
             tableData: tableData,
             activeFilters: defaultTo(storedFilters, {}),
-            numberOfRowsShow: 10,
+            numberOfRowsShow: defaultTo(this.props.numberOfRowsShow, 10),
             currentPageNumber: 1,
-            sortBy: {propertyName: null, order: 'ASC'},
+            sortBy: sortBy,
             rowUnderEdit: false,
             rowUnderEditId: -1,
             columnUnderEditId: '',
@@ -117,8 +124,15 @@ class Table2 extends Component {
     }
 
     refreshTableData(tableData) {
+        const newTableData = cloneDeep(tableData);
+        const propertyName = get(this.state, 'sortBy.propertyName', '');
+        if (propertyName) {
+            const order = get(this.state, 'sortBy.order', 'ASC');
+            newTableData.sort((a, b) => sorting(a, b, order, propertyName));
+        }
+
         this.setState({
-            tableData
+            tableData: newTableData
         });
     }
 
@@ -298,16 +312,16 @@ class Table2 extends Component {
 
     onClickSaveRow() {
         if (!this.state.isRowValid) {
-            this.handleShowMessage('Selected row could not be saved', 'error');
+            this.handleShowMessage(this.props.messages['editFailed'], 'error');
             return Promise.reject();
         }
         return this.onUpdateRow(this.state.rowUnderEditId).then((status) => {
             if (status == 'saved') {
-                this.handleShowMessage('Selected row edited successfully', 'ok');
+                this.handleShowMessage(this.props.messages['editSuccess'], 'ok');
             }
             return Promise.resolve();
         }).catch(() => {
-            this.handleShowMessage('Selected row could not be saved', 'error');
+            this.handleShowMessage(this.props.messages['editFailed'], 'error');
             return Promise.reject();
         });
     };
@@ -409,6 +423,7 @@ class Table2 extends Component {
                                 }
 
                                 const data = {
+                                    messages: this.props.messages,
                                     type: type,
                                     key: column.name,
                                     value: get(row, column.value),
@@ -455,7 +470,7 @@ class Table2 extends Component {
         });
         const response = await this.props.onDeleteRow(this.state.idToDelete).then(() => {
             this.removeItemFromData(this.state.idToDelete);
-            return this.handleShowMessage('Selected row deleted successfully', 'ok');
+            return this.handleShowMessage(this.props.messages['deleteSuccess'], 'ok');
         })
         .catch((error) => this.handleShowMessage(error, 'error'));
 
@@ -512,11 +527,11 @@ class Table2 extends Component {
                 }
                 <Modal show={this.state.isModalDialogActive} onHide={this.handleClose}>
                     <Modal.Header>
-                        <Modal.Title>Confirmation</Modal.Title>
+                        <Modal.Title>{this.props.messages['modalTitle']}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <p>
-                            Do you want to delete the selected row with id: {this.state.idToDelete}?
+                            {this.props.messages['modalDeleteText'](this.state.idToDelete)}
                         </p>
                     </Modal.Body>
                     <Modal.Footer>
@@ -524,10 +539,10 @@ class Table2 extends Component {
                         <span className="icon-spinner"></span>
                         }
                         {!this.state.isDeleting &&
-                        <Button onClick={this.handleClose} id="modalCancel">No</Button>
+                        <Button onClick={this.handleClose} id="modalCancel">{this.props.messages['modalCancelButton']}</Button>
                         }
                         {!this.state.isDeleting &&
-                        <Button onClick={this.deleteRow} bsStyle="defaultBlue" id="modalConfirm">Yes</Button>
+                        <Button onClick={this.deleteRow} bsStyle="defaultBlue" id="modalConfirm">{this.props.messages['modalConfirmButton']}</Button>
                         }
                     </Modal.Footer>
                 </Modal>
@@ -564,6 +579,15 @@ class Table2 extends Component {
 }
 
 Table2.defaultProps = {
+    messages: {
+        editFailed: 'Selected row could not be saved',
+        editSuccess: 'Selected row edited successfully',
+        deleteSuccess: 'Selected row deleted successfully',
+        modalTitle: 'Confirmation',
+        modalConfirmButton: 'Yes',
+        modalCancelButton: 'No',
+        modalDeleteText: (deletionId) => `Do you want to delete the selected row with id: ${deletionId}?`,
+    },
     buttons: [],
     invalidClassName: 'invalid',
 }
