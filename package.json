@@ -1,6 +1,6 @@
 {
   "name": "react-composite-table-fork",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "",
   "main": "./library/react-composite-table.js",
   "module": "./library/react-composite-table.js",
