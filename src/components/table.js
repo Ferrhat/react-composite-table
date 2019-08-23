@@ -31,7 +31,7 @@ class Table2 extends Component {
 
         const storedFilters = readCookie(this.props.name);
 
-        const sortBy = defaultTo(this.props.sortBy, {propertyName: 'id', order: 'ASC'});
+        const sortBy = defaultTo(this.props.sortBy, {});
         let tableData = this.props.data;
 
         const propertyName = get(sortBy, 'propertyName', '');
