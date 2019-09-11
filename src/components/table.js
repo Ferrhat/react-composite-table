@@ -363,7 +363,7 @@ class Table2 extends Component {
         return (
             this.state.tableData.slice(start, end).map((row, rowIndex) => {
                 return (
-                    <tr key={row.id} style={{height: '100%'}}>
+                    <tr key={row.id} style={{height: '100%'}} className={row.rowClass}>
                         {
                             this.props.columns.map((column) => {
                                 const onClickEditRow = () => {
